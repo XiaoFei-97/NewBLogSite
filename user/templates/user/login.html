@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    登录 - 蒋振飞的博客
+{% endblock %}
+
+{% block nav_login_active %}active{% endblock %}
+{% block lunbobox %}{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top: 60px;">
+         {% if user.is_authenticated %}
+             <div style="width: 500px;margin:auto;margin-top: 150px;">
+                <h2 class="text-center">已登录</h2>
+                <p class="text-center">
+                    <span>您已登录，<span id="time_left">3</span>秒后跳转到首页...</span>
+                </p>
+            </div>
+             <script type="text/javascript">
+                $(function(){
+                    var time = 3000 / 1000;
+                    intervalid = window.setInterval(function(){
+                        if (time <= 0){
+                            clearInterval(intervalid);
+                            window.location = '/';
+                        }
+                        $('#time_left').text(time);
+                        time -= 1;
+                    },1000);
+                });
+            </script>
+
+         {% else %}
+            <div class="head-login">
+                <h2 class="text-info">欢迎登录用户</h2>
+                <span>评论和点赞均需要登录哟，您还在等什么？</span>
+            </div>
+
+            <div class="login" style="margin-bottom: 2em">
+                <form action="" method="POST">
+                 {% csrf_token %}
+                    <input name="referer" type="hidden" value="{{ referer }}">
+                 {% for field in login_form %}
+                     <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                     {{ field }}
+                     <p class="text-danger">{{ field.errors.as_text }}</p>
+                 {% endfor %}
+                    {# 错误信息标红 #}
+                    <span class="text-danger">{{ login_form.non_field_errors }}</span>
+                    <span class="other_account clearfix">第三方账号登录：
+
+                        <a href="{% url 'oauth:github_login' %}" title="Github登录">
+                            <img src="{% static 'blog/media/github.ico' %}" alt="Github登录">
+                        </a>
+                        {# <a href="/oauth/oauth_login/QQ?state=https://jzfblog.com/" title="QQ登录">#}
+                            <img src="{% static 'blog/media/qq.ico' %}" alt="QQ登录">
+                        {# </a>#}
+{#                        <a href="{% url 'oauth:github_login' %}" title="Github登录">#}
+                            &nbsp;<img src="{% static 'blog/media/weibo.ico' %}" alt="微博登录">
+{#                        </a>#}
+                    </span>
+                    {# <span>用户名：</span> #}
+                    {# <input type="text" name="username"> #}
+                    {# <span>密码：</span> #}
+                    {# <input type="password" name="password"> #}
+                    <button style="margin-top: 5px" class="btn btn-primary pull-right" type="submit">登录</button>
+
+                </form>
+
+                <div class="login-button hidden-xs">
+                    <p class="no-user">没有账号？</p>
+                    <p><a href="{% url 'user:register' %}">
+                        <button class="btn btn-default" type="submit">点击注册</button>
+                    </a></p>
+
+                    <p class="no-user">忘记密码？</p>
+                    <p><a href="{% url 'user:forgot_password' %}">
+                        <button class="btn btn-default" type="submit">找回密码</button>
+                    </a></p>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </div>
+{% endblock %}

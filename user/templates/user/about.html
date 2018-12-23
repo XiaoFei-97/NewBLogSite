@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{#页面标题#}
+{% block title %}蒋振飞个人博客 - 关于{% endblock title %}
+
+{#目录触发#}
+{% block nav_about_active %}active{% endblock %}
+{% block nav_blog_active %}{% endblock %}
+
+{% block header_extend %}
+    <link rel="stylesheet" href="{% static 'about/about.css' %}">
+    <script src="{% static 'about/about.js' %}"></script>
+{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'user:about' %}">关于自己</a></div>
+{% endblock nav_route %}
+
+{% block content %}
+
+    <div class="blogbox">
+        <div class="contentbox">
+            {% block contentbox %}
+                <p>
+                    在刚进大学校门的时候，当时的我以为大学除了学习之外还应注重发展人际关系，
+                    所以只要积极参加学院、社团等活动，我就是一个合格的大学生。
+                    所以有一段时间我一直在班级与社团之间忙碌。
+                </p>
+                <p>
+                    后来，学校开了单片机的课程，自己也开始对自己的未来做了规划，兴趣的激发，
+                    我就在网上先后购买了51单片机和STM32开发板，在各方帮助和自身努力下，
+                    能利用C语言程序设计门铃，呼吸灯，利用传感器芯片测量时间温度等程序，也做过点阵，
+                    数码管和LCD液晶以及OLED的显示。偶然一次在老师的项目中，我接触到了Python这门语言，
+                    发现它的功能真的很强，相比C语言程序而言，可读性强了不少。从web开发到爬虫，人工智能，
+                    大数据，各个方向都有Python的身影，于是我决定深入学习这门语言。
+                </p>
+                <p>
+                    在众多的方向中，我坚持学习web开发一直到现在，从一开始的Python语法基础，到Python面向对象编程和网络编程，
+                    再到各种常用库以及第三方库。在网络编程中，掌握了多进程及多线程的并发，计算机网络协议，
+                    如TCP、UDP、TFTP、SMTP、HTTP、HTTPS等。后来，我又逐渐深入到数据库和不同的前端语言，数据库我选择了主流的MySQL作为入门，
+                    随后慢慢学习了MongoDB、Redis等非关系型数据库。在前端方面， 熟悉了HTML和CSS以及HTML5和CSS3的新特性，掌握了JavaScript以及Jquery，
+                    Bootstrap等前端框架。我还掌握了Django以及Flask等主流框架，了解机器学习常用算法，
+                    能使用Scikit-Learn进行机器学习模型的分析和预测，熟悉Linux操作与git工具的使用，熟悉爬虫requests常用库， 能突破较简单的反爬措施，并使用Scrapy框架抓取信息进行简单的数据可视化分析，
+                    了解numpy、pandas、matplotlib的基本使用。
+                </p>
+                <p>
+                    在Java方向上，熟悉面向接口开发和JavaBean的设计模式，深入理解Servlet与Jsp，掌握了JDBC动态Sql处理以及DBCP、C3P0连接池配置使用。现在的我，深知作为一名程序员，
+                    光靠一门语言不足以解决所有遇到的问题，所以我正在深入学习Java框架与机器学习相关课程，
+                    希望日后在大数据与人工智能相关领域有所突破。
+                </p>
+                <p>通往成功的路，总是在施工中，一起加油吧！</p>
+                <p>服务器：阿里云服务器&nbsp;&nbsp;<a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=8smrzoqa&amp;productCode=vm" target="_blank"><strong>前往阿里云官网购买&gt;&gt;</strong></a></p>
+                <p>备案号：赣ICP备18008471号</p>
+                <p>程 序：Python</p>
+                <!--<br /><br /><strong>在线工具</strong>-->
+            {% endblock contentbox %}
+        </div>
+    </div>
+    <div class="rside">
+        <div class="news">
+             <h2 class="newstitle"><b>蒋振飞的名片</b></h2>
+             <ul style="padding-bottom: 0">
+                <li>职业：2019年应届毕业生</li>
+                <li>现居：江西景德镇</li>
+                <li>爱好：阅读、思考、运动、社交</li>
+                <li>Email：XiaoFei-97@outlook.com</li>
+             </ul>
+             <ul class="linkmore clearfix">
+                 <li class="QQ">
+                    <a target="_blank" title="QQ联系我" href="http://wpa.qq.com/msgrd?v=3&uin=1378482556&site=qq&menu=yes">
+                        <img src="{% static 'img/logo_qq.ico' %}" alt="QQ联系我">
+                    </a>
+                </li>
+                 <li class="email">
+                     <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=XiaoFei-97@outlook.com" target="_blank" title="我的邮箱">
+                         <img src="{% static 'img/logo_email.ico' %}" alt="Email">
+                     </a>
+                 </li>
+                 <li class="open_china">
+                     <a href="https://my.oschina.net/zhenfei" target="_Blank" title="开源中国">
+                         <img src="{% static 'img/logo_open_china.ico' %}" alt="开源中国">
+                     </a>
+                 </li>
+                 <li class="github">
+                     <a href="https://github.com/XiaoFei-97" target="_Blank" title="我的Github">
+                         <img src="{% static 'img/logo_github.ico' %}" alt="我的Github">
+                     </a>
+                 </li>
+                 <li class="wechat_person">
+                      <a href="javascript:void(0);" target="_Blank" title="公众号">
+                         <img src="{% static 'img/weixin.png' %}" alt="公众号">
+                      </a>
+                      <img id="card_wechat" class="card_wechat" src="{% static 'img/wechat.jpg' %}" alt="公众号">
+                  </li>
+                 {# <li><a href="mailto:XiaoFei-97@outlook.com" title="我的邮箱"><img src="{% static 'blog/img/email.ico' %}" alt="Email"></a></li>#}
+            </ul>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>技能栏</b></h2>
+            <div class="box">
+                <div>C</div>
+                <div>Linux</div>
+                <div>Shell</div>
+                <div>Python</div>
+                <div>Java</div>
+                <div>Django</div>
+                <div>MySQL</div>
+                <div>MongoDB</div>
+                <div>Redis</div>
+                <div>HTML</div>
+                <div>CSS</div>
+                <div>JavaScript</div>
+                <div>JQuery</div>
+                <div>BootStrap</div>
+                <div>Scrapy</div>
+                <div>Servlet</div>
+                <div>Jsp</div>
+                <div>Hibernate</div>
+            </div>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>在线工具</b></h2>
+            <ul>
+                <li><u><a href="https://www.djangoproject.com/" target="_blank">Django API文档</a></u></li>
+                <li><u><a href="http://www.w3school.com.cn/" target="_blank">W3 School在线教程</a></u></li>
+                <li><u><a href="https://tool.lu/c/developer" target="_blank">开发在线工具</a></u></li>
+                <li><u><a href="https://tongji.baidu.com" target="_blank">站长工具-百度统计</a></u></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+

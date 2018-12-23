@@ -1,0 +1,45 @@
+{% extends 'blog/blog.html' %}
+{% load post_tags %}
+{% load staticfiles %}
+
+{# 页面标题 #}
+{% block title %}
+    蒋振飞个人博客 - 分类 - {{ category_name }}
+{% endblock title %}
+{% block nav_blog_active %}{% endblock %}
+{% block nav_category_active %}active{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:category' 1 %}">全部分类</a></div>
+{% endblock nav_route %}
+
+{% block side_list %}
+    <div class="rside">
+        <div class="news">
+            <h2 class="newstitle"><b>博客分类</b></h2>
+            <ul>
+                {% for category in category_list %}
+                <li>
+                    <a class="hvr-buzz-out" href="{% url 'blog:category' category.id %}">{{ category }}&nbsp;({% get_category_count category %})</a>
+                </li>
+            {% empty %}
+                <span>暂无分类 !</span>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>日期归档</b></h2>
+            <ul>
+                {% for post_date in date_list %}
+                    <li>
+                        <a class="hvr-buzz-out" href="{% url 'blog:date' post_date.year post_date.month %}">
+                            {% get_date_to_month post_date %}&nbsp;({% get_date_count post_date.year post_date.month %})
+                        </a>
+                    </li>
+                {% empty %}
+                    <span>暂无归档 !</span>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock side_list %}

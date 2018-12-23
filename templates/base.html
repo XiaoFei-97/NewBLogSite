@@ -1,0 +1,618 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!--- the site is designed jzfblog.com 05/2018 --->
+    <meta charset="UTF-8">
+    {# 兼容IE浏览器 #}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {# 响应式布局 #}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {# 百度收录标识 #}
+    <meta name="baidu-site-verification" content="5RbnZ7cZ7F" />
+
+    {# 网站信息 #}
+    <meta name="author" content="蒋振飞,XiaoFei-97@outlook.com">
+    <meta name="keywords" content="蒋振飞,个人博客,IT技术博客,技术笔记,前端,后端,数据库,开发者,编程,代码,开源,IT网站,Developer,Programmer,Coder,Spring,Spring Boot,Spring Cloud,MongoDB,Jvm">
+    <meta name="description" content="一个互联网草根站长的个人博客网站,关注互联网、Python全栈、JavaEE等技术。本站主要用来分享互联网、教程、学习笔记等，一个有情怀值得收藏的个人博客!">
+    <title>{% block title %}{% endblock%}</title>
+    <link type="text/css" rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'base/myRewards.css' %}">
+    {# 全局样式 #}
+    <link rel="stylesheet" href="{% static 'base/hover-min.css' %}">
+    <script src="{% static 'base/jquery.min.js' %}" ></script>
+    <script src="{% static 'base/comm.js' %}" ></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static 'base/base.css' %}" rel="stylesheet">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% block header_extend %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="logo">蒋振飞个人博客</div>
+        <div class="top-nav">
+            <h2 id="mnavh"><span class="navicon"></span></h2>
+            <ul id="nav">
+               {# 首页 #}
+               <li class="{% block nav_home_active %}{% endblock %}">
+                   <a href="{% url 'blog:home' %}"><span class="glyphicon glyphicon-home item"></span> 网站首页</a>
+               </li>
+               {# 博客 #}
+               <li class="{% block nav_blog_active %}{% endblock %}">
+                   <a href="{% url 'blog:blog' %}"><span class="glyphicon glyphicon-pencil item"></span> 技术分享</a>
+               </li>
+              {# 分类 #}
+               <li class="{% block nav_category_active %}{% endblock %}">
+                   <a href="{% url 'blog:category' 1 %}"><span class="glyphicon glyphicon-duplicate item"></span> 博客分类</a>
+               </li>
+              {# 归档 #}
+               <li class="{% block nav_date_active %}{% endblock %}">
+                   <a href="{% url 'blog:date' 2018 12 %}"><span class="glyphicon glyphicon-calendar item"></span> 日期归档</a>
+               </li>
+               {# 关于 #}
+               <li class="{% block nav_about_active %}{% endblock %}">
+                <a href="{% url 'user:about' %}"><span class="glyphicon glyphicon-education item"></span> 关于自己</a>
+               </li>
+                <!--<li><a href="/5">留言</a></li>-->
+                {% if not user.is_authenticated %}
+                    {# 登录/注册 #}
+                    <li class="{% block nav_login_active %}{% endblock %}">
+                        {# ?from={{ request.get_full_path }} #}
+                        <a id="login_button" class="item glyphicon hidden-sm" href="javascript:void(0)">登录</a> /
+                        <a id="register_button" class="item glyphicon" href="javascript:void(0)">注册</a>
+                    </li>
+                {% else %}
+                    <li class="dropdown hover">
+                        {% if user.get_image_url %}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img style="width: 32px;height: 32px;display: inline-block" src="{{ user.get_image_url }}" alt="头像">
+                                {{ user.get_nickname_or_username }}<span class="caret"></span>
+                            </a>
+                        {% else %}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user item"></span>
+                                {{ user.get_nickname_or_username }}<span class="caret"></span>
+                            </a>
+                        {% endif %}
+
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'user:profile' %}">用户中心</a></li>
+                            <li><a href="{% url 'user:chpwd' %}">修改密码</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'xadmin:index' %}">后台管理</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'user:logout' %}?from={{ request.get_full_path }}">退出</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="search">
+            <form action="{% url 'blog:looking' %}" method="get" name="searchform" id="searchform">
+                <input name="wq" id="keyboard" class="input_text" placeholder="搜点啥?" type="text">
+                <button class="input_submit" type="submit"></button>
+            </form>
+        </div>
+    </header>
+    <aside class="side">
+        <div class="about"> <i><a href="/"><img src="{% static 'img/avatar.jpg' %}"></a></i>
+            <p>蒋振飞，2019届毕业生草根站长！关注互联网、Python全栈、JavaEE等技术。本站主要用来分享互联网、教程、学习笔记等，一个有情怀值得收藏的个人博客!</p>
+        </div>
+        <div class="weixin"> <img src="{% static 'img/wechat.jpg' %}">
+            <p>关注我 么么哒！</p>
+        </div>
+    </aside>
+    <main>
+        <div class="main-content">
+
+            {% block nav_route %}
+            {% endblock nav_route %}
+
+            {# 页面内容 #}
+            {% block content %}{% endblock %}
+
+            <div class="copyright">
+                <p>Copyright 2018.05 All Rights Reserved. Designed by 蒋振飞
+                    <a href="http://www.miibeian.gov.cn/">赣ICP备18008471号</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+     <!-- Modal -->
+    <div class="modal fade" id="login_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <form id="login_modal_form" action="" method="POST">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">登录</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        {% csrf_token %}
+                            {# {% for field in LoginModalForm %} #}
+                            {#  <label for="{{ field.id_for_label }}">{{ field.label }}</label> #}
+                            {##}
+                            {# <div class="input-group"> #}
+                            {#  <span class="input-group-addon glyphicon glyphicon-home item"></span> #}
+                            {#  {{ field }} #}
+                            {# </div>#}
+                            {# {% endfor %} #}
+                        <label>账号</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon-user item"></span>
+                            {{ LoginModalForm.username_or_email }}
+                        </div>
+
+                        <label style="margin-top: 5px">密码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon-lock item"></span>
+                            {{ LoginModalForm.password }}
+                        </div>
+
+                        <div style=" margin: 0.5em 0;">
+
+                            <div id="login_modal_tip" class="text-danger"></div>
+                            <span style="font-weight: 700;">其他账号登录：</span>
+
+                            <div class="other_account">
+                                <a href="{% url 'oauth:github_login' %}" title="Github登录">
+                                    <img style="width: 50px;height: 50px;margin-left: 15px" src="{% static 'img/logo_Github.ico' %}" alt="Github登录">
+                                </a>
+                                <a href="{% url 'oauth:qq_login' %}" title="QQ登录">
+                                    <img style="margin-left: 6px" src="{% static 'img/logo_qq.ico' %}" alt="QQ登录">
+                                </a>
+                                <img style="margin-left: 13px" src="{% static 'img/logo_sina.ico' %}" alt="微博登录">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer">
+                        <button id="forgot_password_button" type="button" class="btn btn-danger pull-left">忘记密码</button>
+                        <input id="login_button" type="submit" class="btn btn-primary" value="登录">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    <div class="modal fade" id="register_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <form id="register_modal_form" action="" method="POST">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">注册</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        {% csrf_token %}
+                            {# {% for field in RegModalForm %} #}
+                            {# <label for="{{ field.id_for_label }}">{{ field.label }}</label> #}
+                            {#     {{ field }} #}
+                            {# <p class="text-danger">{{ field.errors.as_text }}</p> #}
+                            {# {% endfor %} #}
+                        <label>账号</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon glyphicon-user item"></span>
+                            {{ RegModalForm.username }}
+                        </div>
+                        <label style="margin-top: 5px">邮箱</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon glyphicon-envelope item"></span>
+                            {{ RegModalForm.email }}
+                        </div>
+                        <label style="margin-top: 5px">密码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon-lock item"></span>
+                            {{ RegModalForm.password }}
+                        </div>
+                        <label style="margin-top: 5px">验证码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon glyphicon glyphicon-check item"></span>
+                            {{ RegModalForm.verification_code }}
+                        </div>
+
+                        <span class="pull-left text-danger">{{ RegModalForm.non_field_errors }}</span>
+
+                        <div style="margin: 0.5em 0;">
+
+                            <div id="register_modal_tip" class="text-danger"></div>
+
+                            <span style="font-weight: 700;">其他账号登录：</span>
+
+                            <div class="other_account">
+                                <a href="{% url 'oauth:github_login' %}" title="Github登录">
+                                    <img style="width: 50px;height: 50px;margin-left: 15px" src="{% static 'img/logo_Github.ico' %}" alt="Github登录">
+                                </a>
+                                <a href="{% url 'oauth:qq_login' %}" title="QQ登录">
+                                    <img style="margin-left: 6px" src="{% static 'img/logo_qq.ico' %}" alt="QQ登录">
+                                </a>
+                                <img style="margin-left: 13px" src="{% static 'img/logo_sina.ico' %}" alt="微博登录">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">注册</button>
+                        <button id="send_register_code" class="btn btn-primary pull-left">发送验证码</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="forgot_password_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <form id="forgot_password_modal_form" action="" method="POST">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">找回密码</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        {% csrf_token %}
+{#                        {% for field in ForgotPasswordModalForm %}#}
+{#                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
+{#                            {{ field }}#}
+{#                            <p class="text-danger">{{ field.errors.as_text }}</p>#}
+{#                        {% endfor %}#}
+                        <label>邮箱</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-user item"></span>
+                            {{ ForgotPasswordModalForm.password_email }}
+                        </div>
+                        <label style="margin-top: 5px">密码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-envelope item"></span>
+                            {{ ForgotPasswordModalForm.new_password }}
+                        </div>
+                        <label style="margin-top: 5px">验证码</label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon  glyphicon-check item"></span>
+                            {{ ForgotPasswordModalForm.password_verification_code }}
+                        </div>
+
+                        <span class="pull-left text-danger">{{ ForgotPasswordModalForm.non_field_errors }}</span>
+                        <div style="margin: 0.5em 0;" id="forgot_password__modal_tip" class="text-danger"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">找回</button>
+                        <button id="send_forgot_password_code" class="btn btn-primary pull-left">发送验证码</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+    <a href="#" class="cd-top cd-is-visible">Top</a>
+
+    <script src="{% static 'base/base.js' %}" ></script>
+    {# 公告栏配置 #}
+    <script>
+
+        window.tctipConfig = {
+        	//最上面的文字
+            headText: "欢迎打赏支持我 ღ",
+            //侧边栏文本
+            siderText: "公告 & 打赏",
+            //侧边栏文本高度调整
+            siderTextTop: "-35px",
+            //侧边栏背景颜色
+            siderBgcolor: "#323d45",
+            //整个侧边栏的高度设置可以px，em，或百分比
+            siderTop:"118px",
+            //底部文字
+            buttomText:"了解更多",
+            //底部文字链接
+            buttomLink:"https://github.com/XiaoFei-97/tctip.git",
+
+            /**
+            list规定打赏的方式，list有几个元素，代表有几种打赏方式,最多五种。
+            分别解释如下:
+
+            key: 为一个英文,用户可随意定义
+
+            icon:
+                    左侧icon图标的url,可以传入相对路径，此时会根据imagePrefix或者staticPrefix进行路径修正。
+                    如果传入绝对路径，则直接展示，不进行路径修正。
+                    如果key是默认值，且用户没有传入icon,则使用系统自带icon。
+            name:
+                    支付方式的名称，用于左侧tab展示的说明。name可以使用系统默认值；如果没有系统默认值，则需要用户传入
+            desc:
+                    支付方式更纤细说明，用于二维码下方说明文字,建议不超过五个字。当desc为空的时候，系统使用默认值，如果没有默认值，则使用name字段
+
+            text:
+                    长文本内容（和qrimg不能同时使用，一般可用于写公告内容）
+            qrimg:
+                    当用户没有支付方式账号的时候，可以直接传入二维码图片；比如用户可以上传微信面对面收钱的二维码图片到服务器，然后将图片的url作为qrimg字段传入。此时二维码下方只展示desc字段，不展示account.
+                    当用户同时传入qrimg和accounts时候，以qrimg为准。
+
+            className:
+                    className可以为空，或者传入myR-on；默认显示项。
+        	**/
+            list:{
+            notice: {icon: "{% static 'img/tip.png' %}", name:"公告栏", className:"myR-on", text: '<p style="text-indent:1em;">Github与QQ第三方登录功能已成功接入，欢迎使用，目前还剩新浪接入功能尚处在开发阶段，在此期间，用户可正常登录网站。后续更新，敬请期待！</p><p style="text-align:right;">2018-12-23</p>'},
+                alipay: {icon: "{% static 'img/alipay.png' %}", name:"支付宝", desc: '用支付宝给"振飞"打赏\n感谢支持！', qrimg: "{% static 'img/alipay.jpg' %}"},
+                weixin: {icon: "{% static 'img/weixin.png' %}", name:"微信", desc: '用微信给"振飞"打赏\n感谢支持！', qrimg: "{% static 'img/wepay.png' %}"}
+            }
+        };
+
+    </script>
+    {# 公告侧边栏 #}
+    <script src="{% static 'base/tctip.min.js' %}"></script>
+    {# 模态框 #}
+    <script>
+
+        $(function () {
+            // 登录模态框提交
+            $('#login_modal_form').submit(function()    {
+                $("#login_button").val("登录中");
+                {#阻止原代码提交#}
+                event.preventDefault();
+                $.ajax({
+                    url: '{% url 'user:login_for_modal' %}',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    cache: false,
+                    success: function (data) {
+                        if(data['status']=='SUCCESS'){
+                              {#刷新加载#}
+                            window.location.reload();
+                            $('#login_modal_tip').text('登录成功')
+                        }else{
+                            $('#login_modal_tip').text('用户名或密码不正确')
+                        }
+                    }
+                });
+                {#阻止提交#}
+                return false
+            });
+            // 注册模态框提交
+            $('#register_modal_form').submit(function(){
+
+                {#阻止原代码提交#}
+                event.preventDefault();
+                $.ajax({
+                    url: '{% url 'user:register_for_modal' %}',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    cache: false,
+                    success: function (data) {
+                        if(data['status']=='SUCCESS'){
+                              {#刷新加载#}
+                            $('#register_modal_tip').text('注册成功')
+                            window.location.reload();
+                        }else if(data['status']=='100'){
+                            $('#register_modal_tip').text('用户名已存在')
+
+                        }else if(data['status']=='200'){
+                            $('#register_modal_tip').text('邮箱已存在')
+
+                        }else if(data['status']=='300'){
+                            $('#register_modal_tip').text('验证码不正确')
+                        }
+                        else{
+                            $('#register_modal_tip').text('注册失败')
+                        }
+                    }
+                });
+                {#阻止提交#}
+                return false
+            });
+            // 找回密码模态框提交
+            $('#forgot_password_modal_form').submit(function(){
+
+                var new_password = $("#id_new_password").val();
+                // 判断密码是否为空
+                if(new_password==""){
+                   $("#forgot_password__modal_tip").text('密码不能为空');
+                   return false;
+                }
+                var verification_code = $("#id_password_verification_code").val();
+                // 判断验证码是否为空
+                if(verification_code==""){
+                   $("#forgot_password__modal_tip").text('验证码不能为空');
+                   return false;
+                }
+                {#阻止原代码提交#}
+                event.preventDefault();
+                $.ajax({
+                    url: '{% url 'user:forgot_password_modal' %}',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    cache: false,
+                    success: function (data) {
+                        if(data['status']=='SUCCESS'){
+                              {#刷新加载#}
+                            $('#forgot_password__modal_tip').text('修改成功');
+                            window.location.reload();
+                        }else if(data['status']=='100'){
+                            $('#forgot_password__modal_tip').text('邮箱不存在');
+
+                        }else if(data['status']=='200'){
+                            $('#forgot_password__modal_tip').text('验证码不正确');
+
+                        }else{
+                            $('#forgot_password__modal_tip').text('修改失败');
+                        }
+                    },
+                    error:function(){
+                        alert('服务器超时，请重试！');
+                    }
+                });
+                {#阻止提交#}
+                return false
+            });
+            // 发送注册验证码
+            $("#send_register_code").click(function () {
+               var email = $("#id_email").val();
+                //判断邮箱是否为空
+                if(email==""){
+                   $("#register_modal_tip").text('邮箱不能为空');
+                   return false;
+                }
+                //发送验证码
+                $.ajax({
+                    url: '{% url 'user:send_verification_code' %}',
+                    type: 'GET',
+                    data: {
+                        'email': email,
+                        'send_for': 'register_code'
+                    },
+                    cache: false,
+                    success: function (data) {
+                        if(data['status']=='SUCCESS'){
+                            $("#register_modal_tip").text('邮件发送成功');
+                        }
+                        if(data['status']=='ERROR'){
+                            alert('当前请求过于频繁！');
+                        }
+                        if(data['status']=='100'){
+                            $("#register_modal_tip").text('邮件发送失败');
+                        }
+                    }
+                });
+               //把按钮变灰
+                $(this).addClass('disabled');
+                $(this).attr('disabled', true);
+                var time = 60;
+                $(this).text(time + 's');
+                var interval = setInterval(() => {
+                    if(time <= 0){
+                        clearInterval(interval);
+                        $(this).removeClass('disabled');
+                        $(this).attr('disabled', false);
+                        $(this).text('发送验证码');
+                        return false;
+                    }
+
+                    time --;
+                    $(this).text(time + 's');
+                }, 1000);
+            });
+            // 发送找回密码验证码
+            $("#send_forgot_password_code").click(function () {
+               var email = $("#id_password_email").val();
+                //判断邮箱是否为空
+                if(email==""){
+                   $("#forgot_password__modal_tip").text('邮箱不能为空');
+                   return false;
+                }
+                //发送验证码
+                $.ajax({
+                    url: '{% url 'user:send_verification_code' %}',
+                    type: 'GET',
+                    data: {
+                        'email': email,
+                        'send_for': 'forgot_password_code'
+                    },
+                    cache: false,
+                    success: function (data) {
+                        if(data['status']=='SUCCESS'){
+                            $("#forgot_password__modal_tip").text('邮件发送成功');
+                        }
+                        if(data['status']=='ERROR'){
+                            alert('当前请求过于频繁！');
+                        }
+                        if(data['status']=='100'){
+                            $("#forgot_password__modal_tip").text('邮件发送失败');
+                        }
+                    }
+                });
+               //把按钮变灰
+                $(this).addClass('disabled');
+                $(this).attr('disabled', true);
+                var time = 60;
+                $(this).text(time + 's');
+                var interval = setInterval(() => {
+                    if(time <= 0){
+                        clearInterval(interval);
+                        $(this).removeClass('disabled');
+                        $(this).attr('disabled', false);
+                        $(this).text('发送验证码');
+                        return false;
+                    }
+
+                    time --;
+                    $(this).text(time + 's');
+                }, 1000);
+            });
+        });
+
+        $(function(){
+
+            // 使得输入框与提醒框宽度一致
+            // var inWidth = $("#key").outerWidth();
+            // alert(inWidth);
+            // $("#blog-search").outerWidth(inWidth);
+
+            // 按键弹起，自动加载相关标题
+            $("#key").keyup(function(){
+               // 获取搜索关键词
+               var key = $("#key").val();
+               // alert(key);
+               if(key == ""){
+                   $("#titles").slideUp();
+               }else{
+                   //3. 请求数据。
+                   $.post("{% url 'blog:findWords' %}",{key:key} ,function(data , status){
+                       //alert(data);
+                       $("#titles").empty();
+                       $(data).each(function(index , c) {
+
+                           if(c.title.length > 20){
+                               title = c.title.substring(0, 19);
+                               $("#titles").append("<li data-id="+ c.id + ">" + title + "...</li>")
+                           }else{
+                               title = c.title;
+                               $("#titles").append("<li data-id="+ c.id + ">" + title + "</li>")
+                           }
+                       });
+                       $("#titles").slideDown();
+                   }, "json");
+
+               }
+           });
+
+            // 自动提交，查找
+            // 动态绑定事件
+            $("#titles").on("click","li", function(){
+
+                var cid = $(this).attr("data-id");
+                window.location.href = "/detail/"+cid
+            });
+
+            // 小尺寸下的搜索框点击
+            $("#mobile-search").click(function(){
+                $("#search").slideToggle();
+                $("#main-content").toggleClass("click-content");
+                $("#click-warp").toggleClass("click-warp");
+            });
+
+            $(".navbar-toggle").click(function () {
+                $("#titles").slideUp();
+            })
+
+        });
+
+    </script>
+
+    {% block script_extends %}{% endblock %}
+</body>
+
+</html>

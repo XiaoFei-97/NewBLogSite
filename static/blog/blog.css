@@ -1,0 +1,172 @@
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+
+/*博客列表*/
+/*会出现最后一个元素多了一条黑边的情况,所以对最后一个元素不进行重置*/
+.blog-border{
+    /*border: 1px solid #ccc;*/
+    border-radius: 6px;
+    /*margin-bottom: 1em;*/
+    /*padding-bottom: 1em;*/
+}
+
+.blog-item{
+    clear: both;
+    border: 1px solid #ddd;
+    padding: 1.5em 1em 0.8em 1.5em;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+/*.blog-item:not(:last-child){*/
+    /*border-bottom: 1px solid #ddd;*/
+/*}*/
+
+.blog-title{
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+.blog-title a:hover{
+    color: #1b9dec;
+}
+
+.blog-describe{
+    color: #666;
+    margin-bottom: 0.5em;
+    word-break: break-all;
+}
+
+.blog-tags{
+    font-size: 0.7em;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.blog-tags span{
+    margin-left: 2px;
+    /*color: #c93756;*/
+    background-color: #eee;
+    padding: 3px;
+    border-radius: 6px;
+    /*margin-bottom: 10px;*/
+}
+
+.read-detail{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #c40000;
+    color: #fff;
+    line-height: 30px;
+    padding: 0 12px;
+    display: block;
+    border-radius: 2px 0 0 2px;
+}
+
+.read-detail:hover{
+    background-color: #3e94a5;
+    color: #fff!important;
+}
+
+.properties{
+    font-size: 0.7em;
+    color: #777;
+    padding-top: 0.5em;
+    border-top: 1px solid #eee;
+    display: inline-block;
+}
+
+.properties a:hover{
+    color: #3690cf;
+}
+
+.list-type{
+    text-align: center;
+    color: #777;
+}
+
+.paginator{
+    text-align: center;
+}
+
+
+.django-ckeditor-widget{
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .side-list {
+        padding: 0 1em 0 1.5em;
+    }
+    .blog-border1{
+        padding-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 2em;
+    }
+    .blog-border2{
+    }
+    .blog-border3{
+        margin-bottom: 2em;
+    }
+    .read-detail{
+        /*position: absolute;*/
+        bottom: 3px;
+        right: 20px;
+        background: #c40000;
+        color: #fff;
+        line-height: 25px;
+        padding: 0 5px;
+        display: block;
+        border-radius: 2px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .blog-border1{
+    }
+    .blog-border2{
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 1em;
+        padding-bottom: 0.5em;
+    }
+}
+
+.side-list h4{
+    /*padding-top: 0.8em;*/
+    padding-bottom: 0.5em;
+    border-bottom: 1px #ccc solid;
+
+}
+
+.comment-info{
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.reply{
+    margin-left: 2em;
+}
+
+#reply_content_container{
+    display: block;
+    border: 1px solid #d1d1d1;
+    border-bottom: none;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 1em 1em 0.5em;
+}
+
+#reply_title{
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 0.5em;
+}
+

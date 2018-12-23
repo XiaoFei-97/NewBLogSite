@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load comment_tags %}
+{% load likes_tags %}
+{% load post_tags %}
+
+{#页面标题#}
+{% block title %}
+    蒋振飞个人博客 - 博客列表
+{% endblock title %}
+
+{% block nav_blog_active %}active{% endblock %}
+
+{% block header_extend %}
+
+{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:blog' %}">技术分享</a></div>
+{% endblock nav_route %}
+
+{% block content %}
+    <div class="blogbox">
+        <div class="bloglist">
+            <ul>
+                {% for post in post_list %}
+                    <li>
+                        <h2><a class="hvr-rotate" href="{% url 'blog:detail' post.id %}" target="_Blank">{{ post.title }}</a></h2>
+                        <i><a href="{% url 'blog:detail' post.id %}">
+
+                             {% if post.pimage %}
+                                    <img class="hvr-wobble-horizontal" src="/media/{{ post.pimage }}">
+                             {% else %}
+                                <img src="">
+                             {% endif %}
+
+                        </a></i>
+                        <p class="blogtext">{{ post.body|cut:'&nbsp;'|striptags|truncatechars:150|safe}}</p>
+                        <p class="bloginfo"><span>{{ post.author.get_nickname_or_username }}</span><span>{{ post.created_time|date:"Y年m月d日" }}</span>
+                            <span><a class="hvr-wobble-vertical" href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a></span>
+                        </p>
+                    </li>
+                {% empty %}
+                    <li>暂无博客,敬请期待 !</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="pagelist">
+            <a title="Total record">&nbsp;<b>{{ page_of_list.paginator.count }}</b></a>&nbsp;&nbsp;&nbsp;
+
+            {% if page_of_list.has_previous %}
+                <a href="?page={{ page_of_list.previous_page_number }}">
+                    上一页
+                </a>
+            {% endif %}
+
+            {% for page_num in page_range %}
+                {# 判断是否当前页 #}
+                {% if page_num == page_of_list.number %}
+                    {# 如果是当前页就设置高亮 #}
+                    <b>{{ page_num }}</b>&nbsp;
+                {% else %}
+                    {% if page_num == '...' %}
+                        <span>{{ page_num }}</span>
+                    {% else %}
+                        <a href="?page={{ page_num }}">{{ page_num }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+
+            {% if page_of_list.has_next %}
+                <a href="?page={{ page_of_list.next_page_number }}">
+                    下一页
+                </a>
+            {% endif %}
+
+            <span id="page_goto"><input type="text" value="6"></span>
+            <a href="javascript:void(0);" onclick="page_jump();">Go</a>
+
+        </div>
+    </div>
+    {% block side_list %}
+        <div class="rside">
+        <div class="news">
+            <h2 class="newstitle"><b>热门排行</b></h2>
+            <ul>
+                {% for post in all_hot_posts %}
+                    <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                {% empty %}
+                    <span>暂无排行 !</span>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>随机推荐</b></h2>
+            <ul>
+                 {% for post in random_recommend %}
+                    <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                {% empty %}
+                    <span>暂无推荐 !</span>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>最新推荐</b></h2>
+            <ul>
+                {% for post in new_recommend %}
+                    <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                {% empty %}
+                    <span>暂无推荐 !</span>
+                {% endfor %}
+            </ul>
+      </div>
+    </div>
+    {% endblock side_list %}
+
+{% endblock content %}
+
+{% block script_extends %}
+    <script type="text/javascript" rel="stylesheet" src="{% static 'blog/blog.js' %}"></script>
+{% endblock %}

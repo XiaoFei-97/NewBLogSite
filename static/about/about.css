@@ -1,0 +1,162 @@
+.box{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.box div{
+    width: 70px;
+    height: 30px;
+    float: left;
+    /*background-color: gold;*/
+    margin-right: 15px;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.5em;
+    display: inline-block;
+}
+
+
+.box div:nth-child(1){
+    background-color: red;
+    animation: loading 1.2s ease 0s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+
+.box div:nth-child(2){
+    background-color: green;
+    animation: loading 1.2s ease 100ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(3){
+    background-color: pink;
+    animation: loading 1.2s ease 200ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(4){
+    background-color: darkseagreen;
+    animation: loading 1.2s ease 300ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(5){
+    background-color: sandybrown;
+    animation: loading 1.2s ease 400ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(6){
+    background-color: firebrick;
+    animation: loading 1.2s ease 400ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(7){
+    background-color: slateblue;
+    animation: loading 1.2s ease 500ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(8){
+    background-color: olivedrab;
+    animation: loading 1.2s ease 600ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(9){
+    background-color: orangered;
+    animation: loading 1.2s ease 700ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(10){
+    background-color: darkturquoise;
+    animation: loading 1.2s ease 800ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(11){
+    background-color: saddlebrown;
+    animation: loading 1.2s ease 900ms infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(12){
+    background-color: lightslategrey;
+    animation: loading 1.2s ease 1s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(13){
+    background-color: gold;
+    animation: loading 1.2s ease 1.1s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(14){
+    background-color: blueviolet;
+    animation: loading 1.2s ease 1.2s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(15){
+    background-color: crimson;
+    animation: loading 1.2s ease 1.3s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(16){
+    background-color: sandybrown;
+    animation: loading 1.2s ease 1.3s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(17){
+    background-color: #c5d5e6;
+    animation: loading 1.2s ease 1.3s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(18){
+    background-color: #b2dba1;
+    animation: loading 1.2s ease 1.3s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+.box div:nth-child(19){
+    background-color: dimgrey;
+    animation: loading 1.2s ease 1.3s infinite alternate;
+    text-align: center;
+    line-height: 30px;
+}
+
+
+@keyframes loading{
+    from{
+        transform:scaleY(1);
+    }
+
+    to{
+        transform:scaleY(0.6);
+    }
+}
+
+.input-submit{
+    width: 240px;
+    border: 1px dashed #aaa;
+    padding: 1.2em;
+    margin: auto;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .inpug-submit{
+        width: auto;
+    }
+}

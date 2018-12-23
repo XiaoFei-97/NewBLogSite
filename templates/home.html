@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load post_tags %}
+
+{% block title %}
+    蒋振飞个人博客 - 分享全栈开发和IT技术的个人博客网站
+{% endblock %}
+
+{% block header_extend %}
+
+{% endblock %}
+
+{% block nav_home_active %}active{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome"> 您好，欢迎来到蒋振飞个人博客！ </div>
+{% endblock nav_route %}
+
+{% block content %}
+
+    <div class="picbox">
+        <h2 class="pictitle"><a href="/">头条展示</a></h2>
+        <!--box begin-->
+        <div class="Box_con"> <span class="btnl btn" id="btnl"></span> <span class="btnr btn" id="btnr"></span>
+            <div class="conbox" id="BoxUl">
+                <ul>
+                     {% for post in all_hot_posts %}
+                        {% if forloop.counter == 1 %}
+                            <li class="cur">
+                                <a href="{% url 'blog:detail' post.id %}"><img src="/media/{{ post.pimage }}" alt=""/>
+                                    <p>{{ post.title }}</p>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'blog:detail' post.id %}"><img src="/media/{{ post.pimage }}" alt=""/>
+                                    <p>{{ post.title }}</p>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% empty %}
+                        <span>暂无推荐 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!--box end-->
+    </div>
+    <div class="newsbox">
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>最新发表</b></h2>
+                <ul>
+
+                    {% for post in new_publish %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                       <span class="tint">暂无发表 !</span>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>最新推荐</b></h2>
+                <ul>
+                    {% for post in new_recommend %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                        <span>暂无推荐 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>随机推荐</b></h2>
+                <ul>
+                    {% for post in random_recommend %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                        <span>暂无推荐 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>阅读周榜</b></h2>
+                <ul>
+                    {% for post in last_7_days_hot_data %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                        <span>暂无周榜 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>阅读月榜</b></h2>
+                <ul>
+                    {% for post in last_30_days_hot_data %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                        <span>暂无月榜 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="/">更多</a></span><b>阅读总榜</b></h2>
+                <ul>
+                     {% for post in all_hot_posts %}
+                        <li><a class="hvr-buzz-out" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
+                    {% empty %}
+                        <span>暂无总榜 !</span>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="blank"></div>
+    <div class="links">
+        <h2 class="linktitle">友情链接</h2>
+        <!--<ul class="link-pic">-->
+            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
+            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
+            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
+            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
+            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
+        <!--</ul>-->
+        <ul class="link-text">
+            <li><a class="hvr-underline-from-center" href="https://blog.wktadmin.com/" target="_Blank">我的学长</a></li>
+            {# <li><a class="hvr-underline-from-center" href="http://cuijiahua.com/" target="_Blank">Jack Cui</a></li>#}
+            <li><a class="hvr-underline-from-center" href="https://itbyc.com/" target="_Blank">杨雨博客</a></li>
+            <li><a class="hvr-underline-from-center" href="https://www.yangruolan.com/" target="_Blank">若岚博客</a></li>
+            <li><a class="hvr-underline-from-center" href="https://blog.whezh.com/" target="_Blank">何洲博客</a></li>
+            <li><a class="hvr-underline-from-center" href="https://zhangge.net/" target="_Blank">张戈博客</a></li>
+            <li><a class="hvr-underline-from-center" href="http://www.jloongking.cn/" target="_Blank">井龙王博客</a></li>
+            <li><a class="hvr-underline-from-center" href="https://www.zhyd.me/" target="_Blank">张亚东博客</a></li>
+            <li><a class="hvr-underline-from-center" href="https://www.liaoxuefeng.com/" target="_Blank">廖雪峰老师</a></li>
+            <li><a class="hvr-underline-from-center" href="https://cuiqingcai.com/" target="_Blank">崔庆才老师</a></li>
+            <li><a class="hvr-underline-from-center" href="http://www.cnblogs.com/52-qq/p/8320303.html" target="_Blank">Python全栈</a></li>
+            <li><a class="hvr-underline-from-center" href="http://cmsblogs.com/" target="_Blank">Java技术驿站</a></li>
+        </ul>
+    </div>
+{% endblock %}

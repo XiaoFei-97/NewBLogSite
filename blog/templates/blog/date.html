@@ -1,0 +1,15 @@
+{% extends 'blog/category.html' %}
+{% load post_tags %}
+{% load staticfiles %}
+{#页面标题#}
+{% block title %}
+    蒋振飞个人博客 - 归档 - {{ post_time }}
+{% endblock title %}
+
+{% block nav_blog_active %}{% endblock %}
+{% block nav_category_active %}{% endblock %}
+{% block nav_date_active %}active{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:date' 2018 12 %}">日期归档</a></div>
+{% endblock nav_route %}

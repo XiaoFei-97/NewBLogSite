@@ -1,0 +1,58 @@
+{% extends 'user/about.html' %}
+
+{% block title %}蒋振飞个人博客 - {{ user.username }}{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'user:profile' %}">用户中心</a></div>
+{% endblock nav_route %}
+
+{% block contentbox %}
+
+    {% if user.is_authenticated %}
+
+        <div>
+            <h3>我的信息</h3>
+            <div class="user-info">
+                <h3 style="margin: 10px">{{ user.username }}</h3>
+                <p>
+                    昵称：{{ user.get_nickname }}
+                    {% if user.get_nickname %}
+                    <u><a class="hvr-underline-from-center" style="margin-left: 0.5em" href="{% url 'user:chname' %}">修改昵称</a></u>
+                    {% else %}
+                        <u><a class="hvr-underline-from-center" href="{% url 'user:chname' %}">添加昵称</a></u>
+                    {% endif %}
+                </p>
+                <p>注册邮箱：
+                    {% if user.email %}
+                        {{ user.email }} (已绑定)
+                    {% else %}
+                        未绑定 <u><a class="hvr-underline-from-center" href="{% url 'user:bind_email' %}">绑定邮箱</a></u>
+                    {% endif %}
+                </p>
+                <p>加入时间：{{ user.date_joined }}</p>
+                <p>上次登录时间：{{ user.last_login}}</p>
+                <p><u><a class="hvr-underline-from-center" href="{% url 'user:chpwd' %}">修改密码</a></u></p>
+            </div>
+        </div>
+
+    {% else %}
+        <h2 class="text-center">未登录</h2>
+         <p class="text-center">
+            <span>未登录，<span id="time_left">3</span>秒后跳转到首页...</span>
+        </p>
+        <script type="text/javascript">
+            $(function(){
+                var time = 3000 / 1000;
+                intervalid = window.setInterval(function(){
+                    if (time <= 0){
+                        clearInterval(intervalid);
+                        window.location = '/';
+                    }
+                    $('#time_left').text(time);
+                    time -= 1;
+                },1000);
+            });
+        </script>
+    {% endif %}
+
+{% endblock contentbox %}

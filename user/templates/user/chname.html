@@ -1,0 +1,52 @@
+{% extends 'user/about.html' %}
+
+{% block title %}蒋振飞个人博客 - {{ user.username }}{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'user:profile' %}">用户中心</a>><a href="{% url 'user:chname' %}">修改昵称</a></div>
+{% endblock nav_route %}
+
+{% block contentbox %}
+    {% if user.is_authenticated %}
+
+        <div class="head-login" style="text-align: center">
+            <h2 class="text-info">修改昵称</h2>
+            <span>机智如你，看看谁的昵称最好听</span>
+        </div>
+
+        <div class="input-submit clearfix">
+             <form action="" method="POST">
+             {% csrf_token %}
+                 <input name="referer" type="hidden" value="{{ referer }}">
+             {% for field in name_form %}
+                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                 {{ field }}
+                 <div class="text-danger">{{ field.errors.as_text }}</div>
+             {% endfor %}
+                {# 错误信息标红 #}
+                 <span class="text-danger">{{ login_form.non_field_errors }}</span>
+                 <button class="btn btn-primary pull-right" type="submit">修改</button>
+            </form>
+
+        </div>
+    {% else %}
+
+        <h4 class="text-center">
+            <span>您尚未登录，<span id="time_left">3</span>秒后跳转到首页...</span>
+        </h4>
+
+         <script type="text/javascript">
+            $(function(){
+                var time = 3000 / 1000;
+                intervalid = window.setInterval(function(){
+                    if (time <= 0){
+                        clearInterval(intervalid);
+                        window.location = '/';
+                    }
+                    $('#time_left').text(time);
+                    time -= 1;
+                },1000);
+            });
+        </script>
+    {% endif %}
+{% endblock contentbox %}
