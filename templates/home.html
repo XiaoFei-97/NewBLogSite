@@ -13,7 +13,9 @@
 {% block nav_home_active %}active{% endblock %}
 
 {% block nav_route %}
-    <div class="welcome"> 您好，欢迎来到蒋振飞个人博客！ </div>
+    <div class="welcome">
+        当前时间：<span id="time"></span>
+    </div>
 {% endblock nav_route %}
 
 {% block content %}
@@ -26,14 +28,26 @@
                 <ul>
                      {% for post in all_hot_posts %}
                         {% if forloop.counter == 1 %}
-                            <li class="cur">
-                                <a href="{% url 'blog:detail' post.id %}"><img src="/media/{{ post.pimage }}" alt=""/>
+                            <li class="cur hvr-wobble-horizontal">
+                                <a href="{% url 'blog:detail' post.id %}">
+
+                                    {% if post.pimage %}
+                                        <img src="/media/{{ post.pimage }}" title="{{post.title}}">
+                                    {% else %}
+                                        <img src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}"}}">
+                                    {% endif %}
+
                                     <p>{{ post.title }}</p>
                                 </a>
                             </li>
                         {% else %}
-                            <li>
-                                <a href="{% url 'blog:detail' post.id %}"><img src="/media/{{ post.pimage }}" alt=""/>
+                            <li class="hvr-wobble-horizontal">
+                                <a href="{% url 'blog:detail' post.id %}">
+                                    {% if post.pimage %}
+                                        <img src="/media/{{ post.pimage }}" title="{{post.title}}">
+                                    {% else %}
+                                        <img src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}">
+                                    {% endif %}
                                     <p>{{ post.title }}</p>
                                 </a>
                             </li>
@@ -125,20 +139,21 @@
     <div class="blank"></div>
     <div class="links">
         <h2 class="linktitle">友情链接</h2>
-        <!--<ul class="link-pic">-->
-            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
-            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
-            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
-            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
-            <!--<li><a href="/"><img src="images/yqlj.png"></a></li>-->
-        <!--</ul>-->
+        <ul class="link-pic">
+            <li>
+                <a href="https://www.yangruolan.com/" target="_blank">
+                    <img src="{% static 'img/ruolan.png' %}" title="若岚博客">
+                </a>
+            </li>
+            <li><a href="https://itbyc.com/"><img src="{% static 'img/yangyu.jpg' %}" title="杨雨个人博客"></a></li>
+            <li><a href="https://blog.whezh.com/"><img src="{% static 'img/hezhou.png' %}" title="何洲个人博客"></a></li>
+            <li><a href="https://zhangge.net/"><img src="{% static 'img/zhangge.png' %}" title="张戈博客"></a></li>
+            <li><a href="https://laod.cn/"><img src="{% static 'img/laodcn.png' %}" title="老D博客"></a></li>
+            <li><a href="https://www.talklee.com/"><img src="{% static 'img/liyang.png' %}" title="李洋个人博客"></a></li>
+        </ul>
         <ul class="link-text">
-            <li><a class="hvr-underline-from-center" href="https://blog.wktadmin.com/" target="_Blank">我的学长</a></li>
-            {# <li><a class="hvr-underline-from-center" href="http://cuijiahua.com/" target="_Blank">Jack Cui</a></li>#}
-            <li><a class="hvr-underline-from-center" href="https://itbyc.com/" target="_Blank">杨雨博客</a></li>
-            <li><a class="hvr-underline-from-center" href="https://www.yangruolan.com/" target="_Blank">若岚博客</a></li>
-            <li><a class="hvr-underline-from-center" href="https://blog.whezh.com/" target="_Blank">何洲博客</a></li>
-            <li><a class="hvr-underline-from-center" href="https://zhangge.net/" target="_Blank">张戈博客</a></li>
+            <!--<li><a class="hvr-underline-from-center" href="https://blog.wktadmin.com/" target="_Blank">我的学长</a></li>-->
+            <li><a class="hvr-underline-from-center" href="http://cuijiahua.com/" target="_Blank">Jack Cui</a></li>
             <li><a class="hvr-underline-from-center" href="http://www.jloongking.cn/" target="_Blank">井龙王博客</a></li>
             <li><a class="hvr-underline-from-center" href="https://www.zhyd.me/" target="_Blank">张亚东博客</a></li>
             <li><a class="hvr-underline-from-center" href="https://www.liaoxuefeng.com/" target="_Blank">廖雪峰老师</a></li>
@@ -147,4 +162,19 @@
             <li><a class="hvr-underline-from-center" href="http://cmsblogs.com/" target="_Blank">Java技术驿站</a></li>
         </ul>
     </div>
+
+<script>
+    $(function () {
+        setInterval(function () {
+
+            var d, s = "";
+            var x = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+            d = new Date();
+            s += d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日 ";
+            s += d.getHours() + "时" + (d.getMinutes()) + "分" + d.getSeconds() + "秒 ";
+            s += x[d.getDay()];
+            $("#time").text(s);
+        }, 1000);
+});
+</script>
 {% endblock %}

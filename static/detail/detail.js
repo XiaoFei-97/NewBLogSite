@@ -151,6 +151,26 @@ $("#comment_form").submit(function(){
     return false;
 });
 
+/**文章目录*/
+$(function () {
+    var oDiv = document.getElementById("blogMenu"),
+        H = 0,
+        Y = oDiv;
+    while (Y) {
+        H += Y.offsetTop;
+        Y = Y.offsetParent;
+    }
+    window.onscroll = function()
+    {
+        var s = document.body.scrollTop || document.documentElement.scrollTop;
+        if(s>H-50) {
+            oDiv.style = "position:fixed;top:30px;";
+        } else {
+            oDiv.style = ""
+        }
+    };
+
+});
 /**
 * ckeditor编辑框的提交
 $("#comment_form").submit(function(){

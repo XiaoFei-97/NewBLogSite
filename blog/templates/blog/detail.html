@@ -35,11 +35,16 @@
     <div class="blogbox">
         <div class="contentbox">
             <h2 class="contitle">{{ title }}</h2>
-            <p class="bloginfo"><span>{{ post.author.get_nickname_or_username }}</span><span>{{ created_time|date:"Y年m月d日 H:i:s" }}</span><span><a href="{% url 'blog:category' category.id %}">{{ category }}</a></span></p>
+             <p class="bloginfo">
+                <!--<span>{{ post.author.get_nickname_or_username }}</span>-->
+                <span>{{ post.created_time|date:"Y年m月d日" }}</span>
+                <span><a class="" href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a></span>
+                <span>浏览({{ post.get_read_num }}）</span>
+                <samp style="display: inline" class="fa fa-comment"></samp> 评论({% get_comment_count post %})
+            </p>
             <p class="jianjie"><b>简介</b>{{ post.body|cut:'&nbsp;'|striptags|truncatechars:150|safe}}</p>
             <div id="entry" class="entry">
                 {{ article|safe }}
-                <div class="autoMenu" id="autoMenu" data-autoMenu></div>
             </div>
             <div class="down">
                 <p><strong>郑重声明：</strong></p>
@@ -84,9 +89,9 @@
                             <li class="hvr-buzz-out"><a href="{% url 'blog:detail' post.id %}">
                                 <i>
                                     {% if post.pimage %}
-                                        <img src="/media/{{ post.pimage }}">
+                                        <img src="/media/{{ post.pimage }}" title="{{post.title}}">
                                     {% else %}
-                                        <img src="">
+                                        <img src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}">
                                     {% endif %}
                                 </i>
                             <p style="text-indent: 0;">{{ post.title }}</p>
@@ -158,7 +163,7 @@
                                     {% endfor %}
                                 </div>
                             {% empty %}
-                                <span id="no_comment">暂无评论</span>
+                                <span id="no_comment" style="color: #aaa;">智慧如你，速度抢下沙发吧 !</span>
                             {% endfor %}
                         </div>
                     </div>
@@ -200,6 +205,10 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div class="news" id="blogMenu">
+                <h2 class="newstitle">文章目录<b></b></h2>
+                <div class="autoMenu" id="autoMenu" data-autoMenu></div>
+            </div>
         </div>
     {% endblock side_list %}
 {% endblock content %}
@@ -212,7 +221,8 @@
             // 绑定图片点击放大
             $("img").each(function(){
                 $(this).attr("data-action","zoom");
-            })
+            });
+            $("#autoMenu ul").find('li').addClass('hvr-buzz-out');
         });
     </script>
     <script>

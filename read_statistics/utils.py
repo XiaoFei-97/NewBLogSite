@@ -170,7 +170,7 @@ def get_7_days_read_posts():
     date = today - datetime.timedelta(days=7)
     posts = Post.objects \
         .filter(Q(display=0) | Q(display__isnull=True), category__status=0, read_detail__date__lt=today, read_detail__date__gte=date) \
-        .values('id', 'title', 'created_time') \
+        .values('id', 'title', 'created_time', 'pimage') \
         .annotate(read_num_sum=Sum('read_detail__read_num')) \
         .order_by('-read_num_sum')
     return posts[:15]
@@ -185,7 +185,7 @@ def get_30_days_read_posts():
     date = today - datetime.timedelta(days=30)
     posts = Post.objects \
         .filter(Q(display=0) | Q(display__isnull=True), category__status=0, read_detail__date__lt=today, read_detail__date__gte=date) \
-        .values('id', 'title', 'created_time') \
+        .values('id', 'title', 'created_time', 'pimage') \
         .annotate(read_num_sum=Sum('read_detail__read_num')) \
         .order_by('-read_num_sum')
     return posts[:15]
@@ -199,7 +199,7 @@ def get_all_read_posts():
     today = timezone.now().date()
     posts = Post.objects \
         .filter(Q(display=0) | Q(display__isnull=True), category__status=0, read_detail__date__lt=today) \
-        .values('id', 'title', 'created_time') \
+        .values('id', 'title', 'created_time', 'pimage') \
         .annotate(read_num_sum=Sum('read_detail__read_num')) \
         .order_by('-read_num_sum')
     return posts[:15]

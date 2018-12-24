@@ -153,7 +153,7 @@
     $.fn.autoMenu.defaults = {
         levelOne : 'h3', //一级标题
         levelTwo : 'h4',  //二级标题（暂不支持更多级）
-        width : 200, //容器宽度
+        width : 245, //容器宽度
         height : 400, //容器高度
         padding: 20, //内部间距
         offTop : 10, //滚动切换导航时离顶部的距离

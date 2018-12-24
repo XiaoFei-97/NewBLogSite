@@ -22,6 +22,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'base/myRewards.css' %}">
     {# 全局样式 #}
     <link rel="stylesheet" href="{% static 'base/hover-min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="{% static 'base/jquery.min.js' %}" ></script>
     <script src="{% static 'base/comm.js' %}" ></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -35,12 +36,14 @@
 
 <body>
     <header>
-        <div class="logo">蒋振飞个人博客</div>
+        <div class="logo hvr-buzz-out">
+            <a href="">蒋振飞个人博客</a>
+        </div>
         <div class="top-nav">
             <h2 id="mnavh"><span class="navicon"></span></h2>
             <ul id="nav">
                {# 首页 #}
-               <li class="{% block nav_home_active %}{% endblock %}">
+               <li class="ra {% block nav_home_active %}{% endblock %}">
                    <a href="{% url 'blog:home' %}"><span class="glyphicon glyphicon-home item"></span> 网站首页</a>
                </li>
                {# 博客 #}
@@ -95,17 +98,17 @@
         </div>
         <div class="search">
             <form action="{% url 'blog:looking' %}" method="get" name="searchform" id="searchform">
-                <input name="wq" id="keyboard" class="input_text" placeholder="搜点啥?" type="text">
+                <input style="width: 150px" name="wq" id="keyboard" class="input_text" placeholder="搜点啥?" type="text">
                 <button class="input_submit" type="submit"></button>
             </form>
         </div>
     </header>
     <aside class="side">
-        <div class="about"> <i><a href="/"><img src="{% static 'img/avatar.jpg' %}"></a></i>
+        <div class="about"> <i><a href="/" title="写博客、记笔记、做追梦少年"><img src="{% static 'img/avatar.jpg' %}"></a></i>
             <p>蒋振飞，2019届毕业生草根站长！关注互联网、Python全栈、JavaEE等技术。本站主要用来分享互联网、教程、学习笔记等，一个有情怀值得收藏的个人博客!</p>
         </div>
         <div class="weixin"> <img src="{% static 'img/wechat.jpg' %}">
-            <p>关注我 么么哒！</p>
+            <p>关注我 爱你哟！</p>
         </div>
     </aside>
     <main>
@@ -177,7 +180,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="modal-footer">
-                        <button id="forgot_password_button" type="button" class="btn btn-danger pull-left">忘记密码</button>
+                        <button id="forgot_password_button" type="button" class="btn btn-success pull-left">忘记密码</button>
                         <input id="login_button" type="submit" class="btn btn-primary" value="登录">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
@@ -246,7 +249,7 @@
                     <div class="clearfix"></div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">注册</button>
-                        <button id="send_register_code" class="btn btn-primary pull-left">发送验证码</button>
+                        <button id="send_register_code" class="btn btn-success pull-left">发送验证码</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </form>
@@ -290,8 +293,8 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">找回</button>
-                        <button id="send_forgot_password_code" class="btn btn-primary pull-left">发送验证码</button>
+                        <button type="submit" class="btn btn-primary">找回</button>
+                        <button id="send_forgot_password_code" class="btn btn-success pull-left">发送验证码</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     </div>
                 </form>

@@ -1,17 +1,9 @@
 $(function () {
-    $('#read-nav li').click(function(){
-
-        $(this).blur(); //消除焦点
-        //alert($(this).index());
-
-        $(this).addClass('active').siblings().removeClass('active');
-
-        // $(this).index() 获取所在层级索引值
-        // alert($(this).index());
-
-        $('#contents #read-item').eq($(this).index()).addClass('cur').siblings().removeClass('cur');
-        $('html').animate({scrollTop: $('#read-nav').offset().top - 110}, 500, function () {
-         $('#read-nav').focus()
-        });
-    });
+    var int=self.setInterval("clock()",1000);
+    function clock()
+    {
+        var d=new Date();
+        var t=d.toLocaleTimeString();
+        document.getElementById("time").value=t;
+    }
 });

@@ -4,6 +4,10 @@
     margin-bottom: 10px;
 }
 
+.entry p,h1,h2,h3,h4,h5,h6{
+    word-break: break-all;
+}
+
 .comment-area p{
     text-indent: 0;
     margin: 5px 0;
