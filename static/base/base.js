@@ -29,7 +29,7 @@ function check() {
 /* 鼠标点击特效 */
 //var a_idx = 0;
 jQuery(document).ready(function($) {
-    $("body").click(function(e) {
+    $("main").click(function(e) {
         var a = new Array("Java", "Python", "C++", "C#", "C", "PHP",
             "JavaScript", "Perl", "Ruby", "GO", "Shell", "Django",
             "Linux", "Django", "MySQL", "MongoDB", "Redis", "HTML",

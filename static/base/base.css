@@ -6,7 +6,7 @@ img { border: 0; display: block }
 ul, li { list-style: none; }
 a { text-decoration: none; color: #666; }
 a:hover { text-decoration: none; }
-.blank { height: 10px; width: 100%; margin: auto; clear: both }
+.blank { height: 10px; width: 100%; margin: auto; clear: both;background-color: #EDEDED; }
 .fl { float: left }
 .fr { float: right }
 header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%; height: 48px; overflow: visible; background: #313842; line-height: 48px; }
@@ -81,13 +81,16 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .bloglist { margin: 20px; overflow: hidden; border: 1px solid #E1E1E1; background: #fff }
 .bloglist li { overflow: hidden; position: relative }
 .bloglist h2 { border-top: 1px solid #eee; border-bottom: 1px solid #eee; background: #FDFDFD; font-weight: 400; font-size: 18px; line-height: 40px; padding-left: 20px; }
-.bloglist h2:before { content: ""; position: absolute; bottom: 0; left: 0; height: 100%; width: 3px; background: #09b1b9 }
+.bloglist li:before { content: ""; position: absolute; bottom: 0; left: 0; height: 100%; width: 3px; background: #09b1b9 }
 .bloglist li:hover h2 a { color: #09B1B9 }
 .bloglist li:nth-child(1) h2 { border-top: 0 }
 .bloglist li i { display: block; float: left; width: 20%; margin: 20px }
-.bloglist li i img { width: 100% }
-.bloglist li .viewmore{display: block;right: 10px;bottom: 10px;position: absolute;padding: 3px 10px;background: #33B0CA;color: #fff;border-radius: 3px;}
-.blogtext { margin: 20px 0 10px 20px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 3; }
+.bloglist li i img { width: 100%;max-height:115px; }
+.bloglist li .viewmore{display: block;right: 10px;bottom: 20px;position: absolute;padding: 3px 10px;background: #33B0CA;color: #fff;border-radius: 3px;}
+.bloglist .loaddiv{ background-color: #EDEDED}
+.bloglist .loaddiv img{margin: auto;}
+.blogtext { margin: 20px 10px 10px 20px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 3; }
+.blogtext a:hover{color: #09B1B9}
 .bloginfo { margin-left: 20px }
 .bloginfo span { padding-left: 20px }
 .bloginfo span, .bloginfo span a { margin-right: 1%; color: #999; }
@@ -97,8 +100,11 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .bloginfo span:nth-child(2) { background: url(../img/bq.png) no-repeat left center }
 .bloginfo span:nth-child(3) { background: url(../img/view.png) no-repeat left center }
  /*rside*/
-.rside { width: 30%; float: right }
-.rside .news { background: #fff; margin: 20px 20px 20px 0; border: 1px solid #e2e2e2; }
+.rside { width: 30%; float: right}
+.rside .news { background: #fff; margin: 20px 20px 20px 0; border: 1px solid #e2e2e2;}
+@-webkit-keyframes fadeIn{ 0%{opacity:0} 100%{opacity:1} }
+@keyframes fadeIn{ 0%{opacity:0} 100%{opacity:1}}
+.fadeIn{-webkit-animation: fadeIn 1.5s ease 0.5s 1 both;-webkit-animation-name:fadeIn;animation-name:fadeIn;display: block!important;}
 .rside .news ul { padding: 10px }
 .rside .news ul li { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 28px; width: 96%; line-height: 28px; font-size: 14px; background: url(../img/li.png) no-repeat left center; padding-left: 15px; }
 .rside .news ul li span { float: right; color: #999; font-size: 12px; margin-left: 20px; }
@@ -205,8 +211,9 @@ header { height: 98px; position: initial; }
 .blogbox { width: 100% }
 .contentbox, .viewbox, .pinlun, .picbox, .bloglist { margin: 10px }
 .newsbox { margin: 0; padding: 0 10px; }
-.bloginfo { margin-bottom: 10px }
-.bloglist li .viewmore{position: static;margin: 10px;text-align: center;}
+.bloginfo { margin-bottom: 10px; display: none }
+.bloglist li .viewmore{position: static;margin: 10px;text-align: center;display: none}
+.bloglist li i{width: 30%; }
 .newsbox section { width: 100% }
 .links { margin: 0 10px 10px 10px }
 .newsbox .news { margin: 0 }

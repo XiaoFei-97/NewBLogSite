@@ -224,6 +224,44 @@ def blog(request):
     return render(request, 'blog/blog.html', context)
 
 
+@csrf_exempt
+def ajax_blog(request):
+    """
+    ajax加载博客内容
+    :param request:
+    :return: 博客json数据
+    """
+
+    # 采用get方式获取用户访问的页码,如果获取不到,默认为第一页
+    page_num = request.POST.get('pagenumber', 1)
+    print(page_num)
+    post_list = cache.get('post_list')
+    if post_list is None:
+        post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True)).filter(category__status=0)
+        # 60*60表示60秒*60,也就是1小时
+        cache.set('post_list', post_list, 30 * 60)
+
+        # 创建一个分页器对象,参数分别是文章列表,每页最大文章数量
+        # 这里的EACH_RAGE_BLOG_NUMBER等于10,已经当成常量写进了seetings里
+    paginator = Paginator(post_list, settings.EACH_RAGE_BLOG_NUMBER)
+
+    # 因为用户输入不一定是数字,所以需要用int(page_num),而django里的get_page会自动识别用户输入以及页码范围
+    # 注意这里的page_of_list是一个paginator对象
+    page_of_list = paginator.page(int(page_num))
+    posts = []
+    for post in page_of_list.object_list:
+        data = {
+            'id': post.id,
+            'title': post.title,
+            'body': post.body,
+            'created_time': post.created_time,
+            'category': post.category.name,
+            'pimage': post.pimage.name,
+        }
+        posts.append(data)
+    return JsonResponse(posts, safe=False)
+
+
 def detail(request, pk):
     """
     显示当前选择文章内容

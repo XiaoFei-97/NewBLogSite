@@ -76,7 +76,7 @@
                         {% endif %}
                     </p>
                 </div>
-                 <img class="normal pull-right cat-action hidden-xs" data-loadfunc="0" src="{% static 'img/cat.jpg' %}" data-loaded="0">
+                 <img class="normal pull-right cat-action hidden" data-loadfunc="0" src="{% static 'img/cat.jpg' %}" data-loaded="0">
             </div>
             <div class="clearfix"></div>
             <div class="viewbox">
@@ -86,7 +86,7 @@
                     {% for post in random_recommend %}
 
                         {% if forloop.counter <= 4 %}
-                            <li class="hvr-buzz-out"><a href="{% url 'blog:detail' post.id %}">
+                            <li class="hvr-grow-shadow"><a href="{% url 'blog:detail' post.id %}">
                                 <i>
                                     {% if post.pimage %}
                                         <img src="/media/{{ post.pimage }}" title="{{post.title}}">

@@ -28,7 +28,7 @@
                 <ul>
                      {% for post in all_hot_posts %}
                         {% if forloop.counter == 1 %}
-                            <li class="cur hvr-wobble-horizontal">
+                            <li class="cur hvr-grow-shadow">
                                 <a href="{% url 'blog:detail' post.id %}">
 
                                     {% if post.pimage %}
@@ -41,7 +41,7 @@
                                 </a>
                             </li>
                         {% else %}
-                            <li class="hvr-wobble-horizontal">
+                            <li class="hvr-grow-shadow">
                                 <a href="{% url 'blog:detail' post.id %}">
                                     {% if post.pimage %}
                                         <img src="/media/{{ post.pimage }}" title="{{post.title}}">
@@ -99,7 +99,7 @@
                 </ul>
             </div>
         </section>
-        <section>
+        <section id="week" style="display: none">
             <div class="news">
                 <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>阅读周榜</b></h2>
                 <ul>
@@ -111,7 +111,7 @@
                 </ul>
             </div>
         </section>
-        <section>
+        <section id="month" style="display: none">
             <div class="news">
                 <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}">更多</a></span><b>阅读月榜</b></h2>
                 <ul>
@@ -123,7 +123,7 @@
                 </ul>
             </div>
         </section>
-        <section>
+        <section id="all" style="display: none">
             <div class="news">
                 <h2 class="newstitle"><span><a href="/">更多</a></span><b>阅读总榜</b></h2>
                 <ul>
@@ -137,19 +137,19 @@
         </section>
     </div>
     <div class="blank"></div>
-    <div class="links">
+    <div class="links" id="link">
         <h2 class="linktitle">友情链接</h2>
         <ul class="link-pic">
-            <li>
+            <li class="hvr-grow-shadow">
                 <a href="https://www.yangruolan.com/" target="_blank">
                     <img src="{% static 'img/ruolan.png' %}" title="若岚博客">
                 </a>
             </li>
-            <li><a href="https://itbyc.com/"><img src="{% static 'img/yangyu.jpg' %}" title="杨雨个人博客"></a></li>
-            <li><a href="https://blog.whezh.com/"><img src="{% static 'img/hezhou.png' %}" title="何洲个人博客"></a></li>
-            <li><a href="https://zhangge.net/"><img src="{% static 'img/zhangge.png' %}" title="张戈博客"></a></li>
-            <li><a href="https://laod.cn/"><img src="{% static 'img/laodcn.png' %}" title="老D博客"></a></li>
-            <li><a href="https://www.talklee.com/"><img src="{% static 'img/liyang.png' %}" title="李洋个人博客"></a></li>
+            <li class="hvr-grow-shadow"><a href="https://itbyc.com/" target="_Blank"><img src="{% static 'img/yangyu.jpg' %}" title="杨雨个人博客"></a></li>
+            <!--<li class="hvr-grow-shadow"><a href="https://blog.whezh.com/" target="_Blank"><img src="{% static 'img/hezhou.png' %}" title="何洲个人博客"></a></li>-->
+            <li class="hvr-grow-shadow"><a href="https://zhangge.net/" target="_Blank"><img src="{% static 'img/zhangge.png' %}" title="张戈博客"></a></li>
+            <li class="hvr-grow-shadow"><a href="https://laod.cn/" target="_Blank"><img src="{% static 'img/laodcn.png' %}" title="老D博客"></a></li>
+            <li class="hvr-grow-shadow"><a href="https://www.talklee.com/" target="_Blank"><img src="{% static 'img/liyang.png' %}" title="李洋个人博客"></a></li>
         </ul>
         <ul class="link-text">
             <!--<li><a class="hvr-underline-from-center" href="https://blog.wktadmin.com/" target="_Blank">我的学长</a></li>-->
@@ -175,6 +175,7 @@
             s += x[d.getDay()];
             $("#time").text(s);
         }, 1000);
-});
-</script>
+    });
+    </script>
+    <script src="{%static 'home/home.js' %}"></script>
 {% endblock %}

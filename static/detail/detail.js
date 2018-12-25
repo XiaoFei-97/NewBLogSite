@@ -171,6 +171,7 @@ $(function () {
     };
 
 });
+
 /**
 * ckeditor编辑框的提交
 $("#comment_form").submit(function(){

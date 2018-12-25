@@ -17,6 +17,53 @@ function page_goto(page){
     window.location.href = url;
 }
 
+// 滚动动画
+$(function () {
+    $(window).scroll(function(){
+        //开始监听滚动条
+        //获取当前滚动条高度
+        var top = $(document).scrollTop();
+        // var hot_top = $("#hot").offset().top;
+        var random_top = $("#random").offset().top;
+        var latest_top = $("#latest").offset().top;
+        // 页面高度
+        var height = $(window).height() - 50;
+        //用于调试 弹出当前滚动条高度
+        //alert(hot_height);
+
+        //判断如果滚动条大于90则弹出 "ok"
+
+        // if(top > hot_top - height ){
+        //
+        //     //alert("ok");
+        //     $('#hot').addClass("fadeIn");
+        // }
+
+        if(top > random_top - height ){
+            $('#random').addClass("fadeIn");
+        }
+        if(top > latest_top - height ){
+
+            // alert("ok");
+            $('#latest').addClass("fadeIn");
+        }
+
+    })
+});
+
+setInterval(function () {
+
+    var d, s = "";
+    var x = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+    d = new Date();
+    s += d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日 ";
+    s += d.getHours() + "时" + (d.getMinutes()) + "分" + d.getSeconds() + "秒 ";
+    s += x[d.getDay()];
+    $("#time").text(s);
+}, 1000);
+
+// ajax加载博客
+
 // 翻页
 function page_jump(){
     var page = $("#page_goto input[type=text]")[0].value;

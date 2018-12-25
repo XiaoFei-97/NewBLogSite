@@ -16,11 +16,6 @@ li {
     list-style: none;
 }
 
-a {
-    text-decoration: none;
-    font-size: 14px;
-}
-
 a:hover {
     text-decoration: none;
 }
@@ -54,7 +49,7 @@ a:focus{outline:none;}
 	background: none;
 }
 .autoMenu ul>li.sub{
-	padding-left: 40px;
+	padding-left: 25px;
 }
 .autoMenu ul>li>a{
 	color: #666;

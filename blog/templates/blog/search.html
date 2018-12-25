@@ -22,16 +22,19 @@
     <div class="blogbox">
         <div class="bloglist">
             <ul>
-                {% for post in post_list %}
+               {% for post in post_list %}
                     <li>
                         <h2><a class="hvr-rotate" href="{% url 'blog:detail' post.id %}" target="_Blank">{{ post.title }}</a></h2>
                         <i><a href="{% url 'blog:detail' post.id %}">
-                            {% if post.pimage %}
-                                <img class="hvr-wobble-horizontal" src="/media/{{ post.pimage }}" title="{{post.title}}">
-                            {% else %}
-                                <img class="hvr-wobble-horizontal" src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}">
-                            {% endif %}                        </a></i>
-                        <p class="blogtext">{{ post.body|cut:'&nbsp;'|striptags|truncatechars:150|safe}}</p>
+
+                             {% if post.pimage %}
+                                <img class="hvr-grow-shadow" src="/media/{{ post.pimage }}" title="{{post.title}}">
+                             {% else %}
+                                <img class="hvr-grow-shadow" src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}">
+                             {% endif %}
+
+                        </a></i>
+                        <p class="blogtext"><a href="{% url 'blog:detail' post.id %}">{{ post.body|cut:'&nbsp;'|striptags|truncatechars:150|safe}}</a></p>
                         <p class="bloginfo">
                             <!--<span>{{ post.author.get_nickname_or_username }}</span>-->
                             <span>{{ post.created_time|date:"Y年m月d日" }}</span>
@@ -39,8 +42,13 @@
                             <span>浏览({{ post.get_read_num }}）</span>
                             <span style="padding-left: 0px"><samp class="fa fa-comment"></samp> 评论({% get_comment_count post %})</span>
                         </p>
-                        <a href="{% url 'blog:detail' post.id %}" target="_blank" class="viewmore hvr-sweep-to-top">阅读原文</a>
+                        <a href="{% url 'blog:detail' post.id %}" target="_blank" class="viewmore hvr-sweep-to-top hidden">阅读原文</a>
                     </li>
+                    {% if not forloop.last %}
+                        <div class="blank"></div>
+                    {% else %}
+
+                    {% endif %}
                 {% empty %}
                     <li>暂无博客,敬请期待 !</li>
                 {% endfor %}
