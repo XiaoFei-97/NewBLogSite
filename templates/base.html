@@ -31,14 +31,14 @@
     <link href="{% static 'base/base.css' %}" rel="stylesheet">
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <!--<link rel="stylesheet" href="https://www.deanhan.cn/wp-content/cache/autoptimize/css/autoptimize_f2c41dd53217853400986c9ee99dbb86.css">-->
     {% block header_extend %}{% endblock %}
 </head>
 
 <body>
     <header>
         <div class="logo hvr-buzz-out">
-            <a href="">蒋振飞个人博客</a>
+            <a href=""><img src="{% static 'img/logo.png' %}" alt=""></a>
         </div>
         <div class="top-nav">
             <h2 id="mnavh"><span class="navicon"></span></h2>
@@ -123,7 +123,7 @@
 
             <div class="copyright">
                 <p>Copyright 2018.05 All Rights Reserved. Designed by 蒋振飞
-                    <a href="http://www.miibeian.gov.cn/">赣ICP备18008471号</a>
+                    <a href="http://www.miibeian.gov.cn/"><img src="https://www.yangruolan.com/Web_imgs/icp.png">赣ICP备18008471号</a>
                 </p>
             </div>
         </div>
@@ -359,6 +359,7 @@
     </script>
     {# 公告侧边栏 #}
     <script src="{% static 'base/tctip.min.js' %}"></script>
+
     {# 模态框 #}
     <script>
 
@@ -615,7 +616,32 @@
         });
 
     </script>
-
+    {# 新版百度统计 #}
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d630f1fe6530178a71dcc21149c6e6bf";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    {# 百度收录 #}
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+    <script src="https://www.deanhan.cn/wp-content/themes/Dean/js/snow.min.js"></script>
     {% block script_extends %}{% endblock %}
 </body>
 

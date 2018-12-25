@@ -8,6 +8,10 @@
     word-break: break-all;
 }
 
+.entry strong{
+    color: #09B1B9;
+}
+
 .comment-area p{
     text-indent: 0;
     margin: 5px 0;

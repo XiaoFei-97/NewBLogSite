@@ -80,7 +80,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="viewbox">
-                <h2 class="newstitle"><b>随便看看</b></h2>
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>随便看看</b></h2>
                 <ul>
 
                     {% for post in random_recommend %}
@@ -176,7 +176,7 @@
     {% block side_list %}
         <div class="rside">
             <div class="news">
-                <h2 class="newstitle"><b>热门排行</b></h2>
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>热门排行</b></h2>
                 <ul>
                     {% for post in all_hot_posts %}
                         <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
@@ -186,7 +186,7 @@
                 </ul>
             </div>
             <div class="news">
-                <h2 class="newstitle"><b>随机推荐</b></h2>
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>随机推荐</b></h2>
                 <ul>
                     {% for post in random_recommend %}
                         <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
@@ -196,7 +196,7 @@
                 </ul>
             </div>
             <div class="news">
-                <h2 class="newstitle"><b>最新推荐</b></h2>
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>最新推荐</b></h2>
                 <ul>
                     {% for post in new_recommend %}
                         <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>{{ post.title|striptags|truncatechars:23|safe }}</a></li>
@@ -206,7 +206,7 @@
                 </ul>
             </div>
             <div class="news" id="blogMenu">
-                <h2 class="newstitle">文章目录<b></b></h2>
+                <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>文章目录</b></h2>
                 <div class="autoMenu" id="autoMenu" data-autoMenu></div>
             </div>
         </div>

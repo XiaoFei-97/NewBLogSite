@@ -16,7 +16,7 @@
 {% block side_list %}
     <div class="rside">
         <div class="news">
-            <h2 class="newstitle"><b>博客分类</b></h2>
+            <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>博客分类</b></h2>
             <ul>
                 {% for category in category_list %}
                 <li>
@@ -28,7 +28,7 @@
             </ul>
         </div>
         <div class="news">
-            <h2 class="newstitle"><b>日期归档</b></h2>
+            <h2 class="newstitle"><span><a href="{% url 'blog:blog' %}"><u>更多</u></a></span><b>日期归档</b></h2>
             <ul>
                 {% for post_date in date_list %}
                     <li>
