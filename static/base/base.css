@@ -5,21 +5,21 @@ body { font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif; background: #
 img { border: 0; display: block }
 ul, li { list-style: none; }
 a { text-decoration: none; color: #666; }
-a:hover { font-weight: 700!important; color:darkgreen!important; text-decoration: none; cursor: url(//www.deanhan.cn/wp-content/themes/Dean/theme/../images/b.cur),auto;}
+a:hover { font-weight: 700!important; color: #09b1b9;  text-decoration: none; cursor: url(//www.deanhan.cn/wp-content/themes/Dean/theme/../images/b.cur),auto;}
  .blank { height: 10px; width: 100%; margin: auto; clear: both;background-color: #EDEDED; }
 .fl { float: left }
 .fr { float: right }
-header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%; height: 48px; overflow: visible; background: #09B1B9; line-height: 48px; border-bottom: 1px solid #eee; }
+header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%; height: 48px; overflow: visible; background: #09B1B9; line-height: 48px; border-bottom: 1px solid #fff; }
 .logo { font-size: 22px; color: #FFF; margin-left: 10px; float: left;}
 .logo a { color: #fff }
-.logo a:hover{color: darkgreen!important;}
+.logo a:hover{color: aqua!important;}
 .logo img{height: 48px;}
 .top-nav { float: left; margin-left: 40px;z-index: 1000; }
 .top-nav ul { overflow: visible }
 .top-nav ul li { display: block; float: left; padding-right: 40px }
 .top-nav ul li a { color: #FFF }
-.top-nav ul li a:hover { color: greenyellow }
-.top-nav ul li.selected a, .top-nav ul li a#selected { color: darkgreen; font-weight: 700 }
+.top-nav ul li a:hover { color: aqua }
+.top-nav ul li.selected a, .top-nav ul li a#selected { color: aqua; font-weight: 700 }
 .search { background: #FFF; overflow: hidden; float: right; margin: 10px 30px 0 0; border-radius: 20px; }
 .search .input_text { padding-left: 5px; float: left; outline: none; border: 0; height: 30px; line-height: 30px; }
 .search .input_submit { background: url(../img/search.png) no-repeat center right 10px; color: #FFF; float: right; width: 32px; border: none; cursor: pointer; outline: none; height: 30px; line-height: 30px; }
@@ -70,13 +70,14 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .link-pic li { float: left; height: 34px; margin-right: 20px; border: 1px solid #E1E1E1; margin-bottom: 10px }
 .link-pic li img { height: 34px; width: 100px }
 .link-text { padding: 0 20px 20px 20px; overflow: hidden }
-.link-text li { float: left; margin-right: 20px }
-.link-text li a:hover { color: #09B1B9; }
+.link-text li { float: left;width: 100px;background-color: #09B1B9;text-align: center;margin: 5px; padding: 2px}
+.link-text li a { color: #fff;width: 100%; }
+.link-text li a:hover { color: #fff!important;}
 .copyright { padding: 0 20px; text-align: center; margin-bottom: 20px; clear: both; }
 .copyright a { color: #666 }
 .copyright img{margin:-4px 5px 0;display: inline-block}
 /*cd-top*/
-.cd-top { display: inline-block; height: 40px; width: 40px; position: fixed; bottom: 40px; right: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); overflow: hidden; text-indent: 100%; white-space: nowrap; background: rgba(0, 0, 0, 0.8) url(../img/top.png) no-repeat center; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; z-index: 9999999 }
+.cd-top { display: inline-block; height: 40px; width: 40px; position: fixed; bottom: 40px; right: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); overflow: hidden; text-indent: 100%; white-space: nowrap; background: #09B1B9 url(../img/top.png) no-repeat center; visibility: hidden; opacity: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; transition: all 0.3s; z-index: 9999999 }
 .cd-top.cd-is-visible { visibility: visible; opacity: 1; }
 /*blogbox*/
 .blogbox { width: 70%; float: left;}
@@ -84,8 +85,8 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .bloglist li { overflow: hidden; position: relative }
 .bloglist h2 { border-top: 1px solid #eee; border-bottom: 1px solid #eee; background: #FDFDFD; font-weight: 400; font-size: 18px; line-height: 40px; padding-left: 20px; }
 .bloglist li:before { content: ""; position: absolute; bottom: 0; left: 0; height: 100%; width: 3px; background: #09b1b9 }
-.bloglist li:hover h2 a { color: darkgreen; font-weight: 700 }
-.bloglist li:hover .blogtext a { color: darkgreen;}
+.bloglist li:hover h2 a { color: #09b1b9; font-weight: 700 }
+.bloglist li:hover .blogtext a { color: #09b1b9;}
 .bloglist li h2 a{color: #09B1B9; font-weight: 700}
 .bloglist li:nth-child(1) h2 { border-top: 0 }
 .bloglist li i { display: block; float: left; width: 20%; margin: 20px }
@@ -256,6 +257,8 @@ header { height: 98px; position: initial; }
   float: none!important;
  }
 
+ .no-find{padding: 10px}
+
  /*滚动条样式*/
 ::-webkit-scrollbar {width: 5px;height: 5px;background-color: #f5f5f5;}
 ::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3);background-color: #f5f5f5;}
@@ -270,3 +273,16 @@ header { height: 98px; position: initial; }
     text-align: center;
 }
 
+ .weixin{animation: jump 2s ease 1.3s infinite alternate;}
+ @keyframes jump{
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(0px, -30px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+
+}

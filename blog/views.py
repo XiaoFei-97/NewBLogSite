@@ -49,10 +49,10 @@ def home(request):
     random_recommend = get_random_recomment()
 
     # 使用自定义的utils工具包get_seven_days_read_data,取出七天内每天的阅读计数总和
-    seven_dates, seven_read_nums = get_seven_days_read_data(post_content_type)
+    # seven_dates, seven_read_nums = get_seven_days_read_data(post_content_type)
 
     # 使用自定义的utils工具包get_year_read_data,取出当年每月的阅读计数总和
-    thirty_dates, thirty_read_nums, year = get_year_read_data(post_content_type)
+    # thirty_dates, thirty_read_nums, year = get_year_read_data(post_content_type)
 
     # 阅读量周榜博客榜单
     # last_7_days_hot_data = get_7_days_read_posts()
@@ -82,9 +82,9 @@ def home(request):
     context = {
         'category_list': category_list, 'post_count': post_list.count,
         'new_publish': new_publish, 'new_recommend': new_recommend,
-        'random_recommend': random_recommend, 'seven_dates': seven_dates,
-        'seven_read_nums': seven_read_nums, 'thirty_dates': thirty_dates,
-        'thirty_read_nums': thirty_read_nums, 'year': str(year),
+        'random_recommend': random_recommend,
+        # 'seven_dates': seven_dates,'seven_read_nums': seven_read_nums, 'thirty_dates': thirty_dates,
+        # 'thirty_read_nums': thirty_read_nums, 'year': str(year),
         'last_7_days_hot_data': last_7_days_hot_data, 'last_30_days_hot_data': last_30_days_hot_data,
         'all_hot_posts': all_hot_posts, 'LoginModalForm': LoginModalForm(), "RegModalForm": RegModalForm(),
         'ForgotPasswordModalForm': ForgotPasswordModalForm(),

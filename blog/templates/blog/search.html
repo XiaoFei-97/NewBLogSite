@@ -15,7 +15,7 @@
 {% block nav_search_active %}active_tag{% endblock %}
 
 {% block nav_route %}
-    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="#">搜索结果</a></div>
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > 找到 {{post_list.count}} 篇与 <span id="search_total"></span> 相关的文章</a></div>
 {% endblock nav_route %}
 
 {% block content %}
@@ -50,7 +50,7 @@
 
                     {% endif %}
                 {% empty %}
-                    <li>暂无博客,敬请期待 !</li>
+                    <li class="no-find">暂无博客,敬请期待 !</li>
                 {% endfor %}
             </ul>
         </div>
@@ -122,5 +122,17 @@
       </div>
     </div>
     {% endblock side_list %}
+
+    <script>
+        $(function () {
+           function getQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]);
+                return null;
+            };
+            $("#search_total").text(getQueryString("wq"));
+        });
+    </script>
 {% endblock %}
 

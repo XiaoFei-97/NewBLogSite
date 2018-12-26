@@ -29,5 +29,5 @@
 .myRewards-code img{ width:106px; height:106px;}
 .i-myRewards{ position:absolute; right:6px; top:16px; width:23px; height:23px; line-height:23px; font-size:14px; color:#44b973; text-align:center; background:url(../img/tab_shang.png) no-repeat;}
 .myRewards-account{ font-size:12px; word-break:break-all; text-align:center;}
-.myRewards .sider-text{ font-size: 17px; width: 30px; text-align: center; background-color: #323d45; margin: 0; padding: 1em 0; border-radius: 12px; border-top-right-radius: 0; border-bottom-right-radius: 0; color: #fff; font-family: 微软雅黑,Tahoma,Verdana,Arial;}
+.myRewards .sider-text{ font-size: 17px; width: 30px; text-align: center; background-color: #09b1b9!important; margin: 0; padding: 1em 0; border-radius: 12px; border-top-right-radius: 0; border-bottom-right-radius: 0; color: #fff; font-family: 微软雅黑,Tahoma,Verdana,Arial;}
 .myRewards .sider-close{float: right;height: 36px;line-height: 36px;font-family: sans-serif;width: 30px;text-align: center;color: #777;font-weight: bold;cursor: pointer;}

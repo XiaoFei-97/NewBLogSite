@@ -22,7 +22,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'base/myRewards.css' %}">
     {# 全局样式 #}
     <link rel="stylesheet" href="{% static 'base/hover-min.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!--<script src="{% static 'base/jquery.min.js' %}" ></script>-->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="{% static 'base/comm.js' %}" ></script>
@@ -122,8 +122,16 @@
             {% block content %}{% endblock %}
 
             <div class="copyright">
-                <p>Copyright 2018.05 All Rights Reserved. Designed by 蒋振飞
+                <p>
+                    托管于阿里云 ·
+                    <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=wylo59db" target="_blank" title="" data-toggle="tooltip" data-placement="bottom" rel="external nofollow" data-original-title="史上最全的阿里云优惠券"><i class="fa fa-fire fa-fw"></i>阿里云券</a>
+                     · <a href="{% url 'user:about' %}" target="_blank">关于博主</a> ·
+                    <a href="https://tongji.baidu.com/web" target="_blank" title="" data-toggle="tooltip" data-placement="right" rel="external nofollow" data-original-title="点击查看蒋振飞个人博客统计详情">
+                        <i class="fa fa-bar-chart-o fa-fw"></i>网站统计</a>
                     <a href="http://www.miibeian.gov.cn/"><img src="https://www.yangruolan.com/Web_imgs/icp.png">赣ICP备18008471号</a>
+                </p>
+                <p>
+                    Copyright©2018 蒋振飞个人博客 · 保留所有权利 · Designed by 蒋振飞
                 </p>
             </div>
         </div>

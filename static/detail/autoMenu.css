@@ -55,7 +55,7 @@ a:focus{outline:none;}
 	color: #666;
 }
 .autoMenu ul>li.active>a{
-	color: darkgreen;
+	color: #09b1b9;
     font-weight: 700;
 	    -webkit-animation-name: hvr-buzz-out;
     animation-name: hvr-buzz-out;
