@@ -8,6 +8,14 @@
     word-break: break-all;
 }
 
+.entry p{
+    text-indent: 0;
+}
+
+.entry p a{
+    text-decoration: underline;
+}
+
 /*.entry strong{*/
     /*color: #09B1B9;*/
 /*}*/

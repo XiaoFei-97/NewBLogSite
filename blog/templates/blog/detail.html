@@ -28,7 +28,7 @@
 {% block nav_blog_active %}active{% endblock %}
 
 {% block nav_route %}
-    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:detail' post.id %}">{{ title }}</a></div>
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a> > <a href="{% url 'blog:detail' post.id %}">{{ title }}</a></div>
 {% endblock nav_route %}
 
 {% block content %}

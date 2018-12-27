@@ -44,31 +44,52 @@
             <h2 id="mnavh"><span class="navicon"></span></h2>
             <ul id="nav">
                {# 首页 #}
-               <li class="ra {% block nav_home_active %}{% endblock %}">
+                <li class="ra {% block nav_home_active %}{% endblock %}">
                    <a href="{% url 'blog:home' %}"><span class="glyphicon glyphicon-home item"></span> 网站首页</a>
-               </li>
-               {# 博客 #}
-               <li class="{% block nav_blog_active %}{% endblock %}">
-                   <a href="{% url 'blog:blog' %}"><span class="glyphicon glyphicon-pencil item"></span> 技术分享</a>
-               </li>
-              {# 分类 #}
-               <li class="{% block nav_category_active %}{% endblock %}">
-                   <a href="{% url 'blog:category' 1 %}"><span class="glyphicon glyphicon-duplicate item"></span> 博客分类</a>
-               </li>
-              {# 归档 #}
-               <li class="{% block nav_date_active %}{% endblock %}">
-                   <a href="{% url 'blog:date' 2018 12 %}"><span class="glyphicon glyphicon-calendar item"></span> 日期归档</a>
-               </li>
+                </li>
+                <li class="dropdown hover">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-duplicate"></span> 系列文章<span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'blog:seriesblog' 3 %}">数据库</a></li>
+                        <li><a href="{% url 'blog:seriesblog' 8 %}">前端相关</a></li>
+                        <li><a href="{% url 'blog:seriesblog' 1 %}">网站搭建</a></li>
+                        <li><a href="{% url 'blog:seriesblog' 6 %}">网络爬虫</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown hover">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-tree-deciduous"></span> 编程相关<span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'blog:programmerblog' 13 %}">Java</a></li>
+                        <li><a href="{% url 'blog:programmerblog' 10 %}">Linux</a></li>
+                        <li><a href="{% url 'blog:programmerblog' 2 %}">Python</a></li>
+                        <li><a href="{% url 'blog:programmerblog' 7 %}">Django</a></li>
+                    </ul>
+                </li>
+                 <li class="dropdown hover">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-paperclip"></span> 查看更多<span class="caret"></span></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'blog:blog' %}">全部文章</a></li>
+                        <li><a href="{% url 'blog:category' 10 %}">工作笔记</a></li>
+                        <li><a href="{% url 'blog:category' 16 %}">心情随笔</a></li>
+                    </ul>
+                </li>
                {# 关于 #}
                <li class="{% block nav_about_active %}{% endblock %}">
-                <a href="{% url 'user:about' %}"><span class="glyphicon glyphicon-education item"></span> 关于自己</a>
+                <a href="{% url 'user:about' %}"><span class="glyphicon glyphicon-education item"></span> 关于博主</a>
                </li>
-                <!--<li><a href="/5">留言</a></li>-->
+                {# <li><a href="/5">留言</a></li> #}
                 {% if not user.is_authenticated %}
                     {# 登录/注册 #}
                     <li class="{% block nav_login_active %}{% endblock %}">
                         {# ?from={{ request.get_full_path }} #}
-                        <a id="login_button" class="item glyphicon hidden-sm" href="javascript:void(0)">登录</a> /
+                        <a id="login_button" class="item glyphicon hidden-sm" href="javascript:void(0)">登录</a> <span style="color: #fff">/</span>
                         <a id="register_button" class="item glyphicon" href="javascript:void(0)">注册</a>
                     </li>
                 {% else %}
@@ -125,7 +146,8 @@
                 <p>
                     托管于阿里云 ·
                     <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=wylo59db" target="_blank" title="" data-toggle="tooltip" data-placement="bottom" rel="external nofollow" data-original-title="史上最全的阿里云优惠券"><i class="fa fa-fire fa-fw"></i>阿里云券</a>
-                     · <a href="{% url 'user:about' %}" target="_blank">关于博主</a> ·
+                     · <a href="{% url 'user:about' %}">关于博主</a>
+                     · <a href="{% url 'blog:record' %}">文章归档</a> ·
                     <a href="https://tongji.baidu.com/web" target="_blank" title="" data-toggle="tooltip" data-placement="right" rel="external nofollow" data-original-title="点击查看蒋振飞个人博客统计详情">
                         <i class="fa fa-bar-chart-o fa-fw"></i>网站统计</a>
                     <a href="http://www.miibeian.gov.cn/"><img src="https://www.yangruolan.com/Web_imgs/icp.png">赣ICP备18008471号</a>
@@ -176,7 +198,7 @@
 
                             <div class="other_account">
                                 <a href="{% url 'oauth:github_login' %}" title="Github登录">
-                                    <img style="width: 50px;height: 50px;margin-left: 15px" src="{% static 'img/logo_Github.ico' %}" alt="Github登录">
+                                    <img style="width: 50px;height: 50px;margin-left: 20px" src="{% static 'img/logo_Github.ico' %}" alt="Github登录">
                                 </a>
                                 <a href="{% url 'oauth:qq_login' %}" title="QQ登录">
                                     <img style="margin-left: 6px" src="{% static 'img/logo_qq.ico' %}" alt="QQ登录">
@@ -619,9 +641,25 @@
 
             $(".navbar-toggle").click(function () {
                 $("#titles").slideUp();
-            })
+            });
 
         });
+        $(document).ready(function(){
+                dropdownOpen();//调用
+            });
+            /**
+             * 鼠标划过就展开子菜单，免得需要点击才能展开
+             */
+            function dropdownOpen() {
+
+                var $dropdownLi = $('li.dropdown');
+
+                $dropdownLi.mouseover(function() {
+                    $(this).addClass('open');
+                }).mouseout(function() {
+                    $(this).removeClass('open');
+                });
+            }
 
     </script>
     {# 新版百度统计 #}

@@ -4,9 +4,9 @@
 
 {# 页面标题 #}
 {% block title %}
-    蒋振飞个人博客
+    蒋振飞个人博客 - 编程相关
         {% if category_name %}
-         - {{category_name}}
+         - <span>{{category_name}}</span>
         {% endif %}
 {% endblock title %}
 {% block nav_blog_active %}{% endblock %}
@@ -14,7 +14,7 @@
 
 {% block nav_route %}
     <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> >
-        <a href="{% url 'blog:blog' %}">全部文章</a>
+        <a href="{% url 'blog:programmer' %}">编程相关</a>
         {% if category_name %}
          > <span>{{category_name}}</span>
         {% endif %}

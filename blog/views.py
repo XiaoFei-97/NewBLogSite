@@ -315,7 +315,25 @@ def detail(request, pk):
     return response
 
 
-def category(request, pk):
+def series(request):
+    """
+    显示某分类下的全部文章
+    :param request: 请求对象
+    :param pk: 分类的主键值
+    :return: 分类列表的视图
+    """
+    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True),
+                                    category__status=0).filter(Q(category_id=1) | Q(category_id=3) | Q(category_id=6) | Q(category_id=8))
+
+    # 使用公共部分的 get_blog_list_common_data方法
+    context = get_blog_list_common_data(request, post_list)
+
+    # 给request返回一个category.html文件
+    return render(request, 'blog/series.html', context)
+
+
+def seriesblog(request, pk):
     """
     显示某分类下的全部文章
     :param request: 请求对象
@@ -327,22 +345,91 @@ def category(request, pk):
     # 因为从url中获得了一个category的pk,就可以在post中进行过滤
     post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category=category)
 
-    date_list = cache.get('date_list')
-    if date_list is None:
-        date_list = Post.objects.filter(category__status=0).dates('created_time', 'month', order='DESC')
-        # 60*60表示60秒*60,也就是1小时
-        cache.set('date_list', date_list, 30 * 60)
+    # 使用公共部分的 get_blog_list_common_data方法
+    context = get_blog_list_common_data(request, post_list)
 
-    post_count = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category__status=0).count()
+    # 新增了一个当前分类名称的键
+    context.update({'category_name': category.name, 'category': category})
+
+    # 给request返回一个category.html文件
+    return render(request, 'blog/series.html', context)
+
+
+def programmer(request):
+    """
+    显示某分类下的全部文章
+    :param request: 请求对象
+    :param pk: 分类的主键值
+    :return: 分类列表的视图
+    """
+    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True),
+                                    category__status=0).filter(Q(category_id=1) | Q(category_id=3) | Q(category_id=6) | Q(category_id=8))
+
+    # 使用公共部分的 get_blog_list_common_data方法
+    context = get_blog_list_common_data(request, post_list)
+
+    # 给request返回一个category.html文件
+    return render(request, 'blog/programmer.html', context)
+
+
+def programmerblog(request, pk):
+    """
+    显示某分类下的全部文章
+    :param request: 请求对象
+    :param pk: 分类的主键值
+    :return: 分类列表的视图
+    """
+    category = get_object_or_404(Category, pk=pk)
+
+    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category=category)
 
     # 使用公共部分的 get_blog_list_common_data方法
     context = get_blog_list_common_data(request, post_list)
 
     # 新增了一个当前分类名称的键
-    context.update({'category_name': category.name, 'date_list': date_list, 'post_count': post_count})
+    context.update({'category_name': category.name, 'category': category})
+
+    # 给request返回一个category.html文件
+    return render(request, 'blog/programmer.html', context)
+
+
+def category(request, pk):
+    """
+    显示某分类下的全部文章
+    :param request: 请求对象
+    :param pk: 分类的主键值
+    :return: 分类列表的视图
+    """
+    category = get_object_or_404(Category, pk=pk)
+
+    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category=category, category__status=0)
+
+    # date_list = cache.get('date_list')
+    # if date_list is None:
+    #     date_list = Post.objects.filter(category__status=0).dates('created_time', 'month', order='DESC')
+        # 60*60表示60秒*60,也就是1小时
+        # cache.set('date_list', date_list, 30 * 60)
+
+    # post_count = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category__status=0).count()
+
+    # 使用公共部分的 get_blog_list_common_data方法
+    context = get_blog_list_common_data(request, post_list)
+
+    # 新增了一个当前分类名称的键
+    context.update({'category_name': category.name,
+                    # 'date_list': date_list, 'post_count': post_count
+                    })
 
     # 给request返回一个category.html文件
     return render(request, 'blog/category.html', context)
+
+
+def record(request):
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category__status=0)
+    return render(request, 'blog/record.html', {'post_list': post_list})
 
 
 def date(request, year, month):

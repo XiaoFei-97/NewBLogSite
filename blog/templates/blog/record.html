@@ -1,0 +1,28 @@
+{% extends 'user/about.html' %}
+{% load static from staticfiles %}
+
+{#页面标题#}
+{% block title %}蒋振飞个人博客 - 文章归档{% endblock title %}
+
+{#目录触发#}
+{% block nav_about_active %}active{% endblock %}
+{% block nav_blog_active %}{% endblock %}
+
+{% block header_extend %}
+    <link rel="stylesheet" href="{% static 'about/about.css' %}">
+    <script src="{% static 'about/about.js' %}"></script>
+{% endblock %}
+
+{% block nav_route %}
+    <div class="welcome">您现在的位置是：<a href="{% url 'blog:home' %}">首页</a> > <a href="{% url 'blog:record' %}">文章归档</a></div>
+{% endblock nav_route %}
+
+{% block contentbox %}
+    <ul>
+        {% for post in post_list %}
+            <li><a class="hvr-curl-bottom-right" href="{% url 'blog:detail' post.id %}" target="_Blank"><span>{{ post.created_time|date:"Y-m-d" }}</span>：{{ post.title}}</a></li>
+        {% empty %}
+            <span>暂无排行 !</span>
+        {% endfor %}
+    </ul>
+{% endblock contentbox %}

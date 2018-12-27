@@ -30,6 +30,7 @@ a:focus{outline:none;}
 	/*z-index: 1000;*/
 	/*text-align: left;*/
 /*}*/
+.autoMenu{width: 100%!important;}
 /*.autoMenu ul{*/
 	/*line-height: 2;*/
 	/*overflow-y: auto;*/

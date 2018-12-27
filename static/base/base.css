@@ -35,7 +35,7 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .picbox { border: 1px solid #E1E1E1; margin: 20px; background: #fff; overflow: visible; }
 .pictitle { background: #09b1b9; height: 40px; line-height: 40px; text-align: center; font-size: 16px; border-bottom: 1px solid #E1E1E1; }
 .pictitle a { color: #fff; }
-.pictitle a:hover { color: #000 }
+.pictitle a:hover { color: #fff; }
 /*gundong*/
 .Box_con { position: relative; margin: 20px 60px; }
 .Box_con .btnl { position: absolute; }
@@ -44,7 +44,7 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .Box_con .btnl:hover { background: url(../img/cp4.png) no-repeat center; }
 .Box_con .btnr { background: url(../img/cp1.png) no-repeat center; right: -70px; }
 .Box_con .btnr:hover { background: url(../img/cp2.png) no-repeat center; }
-.Box_con .conbox { position: relative; overflow: hidden; }
+.Box_con .conbox { position: relative; overflow: hidden; padding-left: 5px}
 .Box_con .conbox ul { position: relative; list-style: none; overflow: hidden; }
 .Box_con .conbox ul li { float: left; width: 210px; height: 180px; margin-left: 20px; overflow: hidden; }
 .Box_con .conbox ul li:first-child { margin-left: 0; }
@@ -135,7 +135,7 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .contitle { font-size: 20px; line-height: 26px; margin-bottom: 20px; color: #09B1B9; }
 .contentbox .bloginfo { margin-left: 0 }
 .contentbox .jianjie { margin: 20px 0; background: #f7f7f7; padding: 10px; }
-.contentbox p {margin-bottom: 25px;text-indent: 1em}
+.contentbox p {margin-bottom: 25px;text-indent: 2em}
 .jianjie b { color: #09b1b9; margin-right: 5px; }
 .entry p {  margin: 5px 0 10px; color: #666; font-size: 14px; line-height: 180%; word-break: break-all; }
 .entry img { max-width: 100% }
@@ -242,6 +242,8 @@ header { height: 98px; position: initial; }
   }
 
  /*模态框*/
+ .modal-content{background-color: #fff;}
+ .input-group-addon{background-color: #fff;}
  .other_account{
     margin: 0 3em;
 }
