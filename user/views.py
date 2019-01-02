@@ -88,7 +88,8 @@ def logout(request):
 
 
 def profile(request):
-    context = {}
+    address_ip = request.META.get("HTTP_X_FORWARDED_FOR", request.META.get("REMOTE_ADDR", None))
+    context = {'address_ip': address_ip}
     return render(request, 'user/profile.html', context)
 
 

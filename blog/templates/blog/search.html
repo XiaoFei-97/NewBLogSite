@@ -70,9 +70,9 @@
                     <b>{{ page_num }}</b>&nbsp;
                 {% else %}
                     {% if page_num == '...' %}
-                        <span>{{ page_num }}</span>
+                        <span class="hidden-xs">{{ page_num }}</span>
                     {% else %}
-                        <a href="?page={{ page_num }}">{{ page_num }}</a>
+                        <a class="hidden-xs" href="?page={{ page_num }}">{{ page_num }}</a>
                     {% endif %}
                 {% endif %}
             {% endfor %}
@@ -84,8 +84,8 @@
                 </a>
             {% endif %}
 
-            <span id="page_goto"><input type="text" value="6"></span>
-            <a href="javascript:void(0);" onclick="page_jump();">Go</a>
+            <span class="hidden-xs" id="page_goto"><input type="text" value="6"></span>
+            <a class="hidden-xs" href="javascript:void(0);" onclick="page_jump();">Go</a>
         </div>
     </div>
     {% block side_list %}

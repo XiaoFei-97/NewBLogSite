@@ -76,7 +76,7 @@
 
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'blog:blog' %}">全部文章</a></li>
-                        <li><a href="{% url 'blog:category' 10 %}">工作笔记</a></li>
+                        <li><a href="{% url 'blog:category' 17 %}">工作笔记</a></li>
                         <li><a href="{% url 'blog:category' 16 %}">心情随笔</a></li>
                     </ul>
                 </li>
@@ -148,6 +148,7 @@
                     <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=wylo59db" target="_blank" title="" data-toggle="tooltip" data-placement="bottom" rel="external nofollow" data-original-title="史上最全的阿里云优惠券"><i class="fa fa-fire fa-fw"></i>阿里云券</a>
                      · <a href="{% url 'user:about' %}">关于博主</a>
                      · <a href="{% url 'blog:record' %}">文章归档</a> ·
+                       <a href="{% url 'blog:read_charts' %}">阅读概况</a> ·
                     <a href="https://tongji.baidu.com/web" target="_blank" title="" data-toggle="tooltip" data-placement="right" rel="external nofollow" data-original-title="点击查看蒋振飞个人博客统计详情">
                         <i class="fa fa-bar-chart-o fa-fw"></i>网站统计</a>
                     <a href="http://www.miibeian.gov.cn/"><img src="https://www.yangruolan.com/Web_imgs/icp.png">赣ICP备18008471号</a>
@@ -647,6 +648,15 @@
         $(document).ready(function(){
                 dropdownOpen();//调用
             });
+            function sleep(numberMillis) {
+                var now = new Date();
+                var exitTime = now.getTime() + numberMillis;
+                while (true) {
+                now = new Date();
+                if (now.getTime() > exitTime)
+                return;
+                }
+            }
             /**
              * 鼠标划过就展开子菜单，免得需要点击才能展开
              */
@@ -655,8 +665,10 @@
                 var $dropdownLi = $('li.dropdown');
 
                 $dropdownLi.mouseover(function() {
+                    // sleep(5000);
                     $(this).addClass('open');
                 }).mouseout(function() {
+                    sleep(100);
                     $(this).removeClass('open');
                 });
             }

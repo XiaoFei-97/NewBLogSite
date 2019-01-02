@@ -48,12 +48,6 @@ def home(request):
     # 随机推荐的15篇博客
     random_recommend = get_random_recomment()
 
-    # 使用自定义的utils工具包get_seven_days_read_data,取出七天内每天的阅读计数总和
-    # seven_dates, seven_read_nums = get_seven_days_read_data(post_content_type)
-
-    # 使用自定义的utils工具包get_year_read_data,取出当年每月的阅读计数总和
-    # thirty_dates, thirty_read_nums, year = get_year_read_data(post_content_type)
-
     # 阅读量周榜博客榜单
     # last_7_days_hot_data = get_7_days_read_posts()
     last_7_days_hot_data = cache.get('last_7_days_hot_data')
@@ -91,6 +85,27 @@ def home(request):
         # 'today_hot_data': today_hot_data,
     }
     return render(request, 'home.html', context)
+
+
+def read_charts(request):
+    """
+    获取阅读曲线图
+    :param request:
+    :return:
+    """
+    # 获取Post模型类或模型的实例，并返回ContentType表示该模型的实例
+    post_content_type = ContentType.objects.get_for_model(Post)
+    # 使用自定义的utils工具包get_seven_days_read_data,取出七天内每天的阅读计数总和
+    seven_dates, seven_read_nums = get_seven_days_read_data(post_content_type)
+
+    # 使用自定义的utils工具包get_year_read_data,取出当年每月的阅读计数总和
+    thirty_dates, thirty_read_nums, year = get_year_read_data(post_content_type)
+    # context用来渲染模板
+    context = {
+        'seven_dates': seven_dates, 'seven_read_nums': seven_read_nums, 'thirty_dates': thirty_dates,
+        'thirty_read_nums': thirty_read_nums, 'year': str(year),
+    }
+    return render(request, 'blog/charts.html', context)
 
 
 def get_blog_list_common_data(request, post_all_list):
@@ -364,7 +379,7 @@ def programmer(request):
     """
     # 因为从url中获得了一个category的pk,就可以在post中进行过滤
     post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True),
-                                    category__status=0).filter(Q(category_id=1) | Q(category_id=3) | Q(category_id=6) | Q(category_id=8))
+                                    category__status=0).filter(Q(category_id=2) | Q(category_id=7) | Q(category_id=10) | Q(category_id=13))
 
     # 使用公共部分的 get_blog_list_common_data方法
     context = get_blog_list_common_data(request, post_list)

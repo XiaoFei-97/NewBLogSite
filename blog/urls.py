@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^programmer/$', views.programmer, name='programmer'),
     url(r'^programmer/(?P<pk>\d+)$', views.programmerblog, name='programmerblog'),
     url(r'^record/$', views.record, name='record'),
+    url(r'^read_charts/$', views.read_charts, name='read_charts'),
 ]
 
 handler404 = views.page_not_found
