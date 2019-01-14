@@ -23,7 +23,8 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .search { background: #FFF; overflow: hidden; float: right; margin: 10px 30px 0 0; border-radius: 20px; }
 .search .input_text { padding-left: 5px; float: left; outline: none; border: 0; height: 30px; line-height: 30px; }
 .search .input_submit { background: url(../img/search.png) no-repeat center right 10px; color: #FFF; float: right; width: 32px; border: none; cursor: pointer; outline: none; height: 30px; line-height: 30px; }
-aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #fff; }
+.search-button{display: none}
+ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #fff; }
 .about { line-height: 26px; font-size: 14px; padding: 0 10px; margin-top: 50px; }
 .about i { display: block; margin: 20px auto; width: 100px; height: 100px; }
 .about i img { width: 100%; display: block; border-radius: 50%; margin: auto }
@@ -205,15 +206,18 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
  @media only screen and (max-width: 767px) {
 body { background: #ededed url(../img/bg.jpg) repeat-x left 0; }
 .navicon { margin-top: 18px }
-.top-nav { position: fixed; right: 0; float: right; margin-left: 0; background: #09b1b9; }
+.top-nav { position: fixed; right: 40px; float: right; margin-left: 0; background: #09b1b9; }
 .top-nav ul li { padding-right: 20px }
 #mnavh { display: block; }
 #nav { display: none; padding-left: 10px; border-left: #09b1b9 10px solid; }
-header { height: 98px; position: initial; }
-.search { width: 80%; margin-bottom: 10px }
+header { border-bottom: none; }
+.search { width: 80%; margin-bottom: 10px; display: none }
+.search-button{color: #FFF;display: block;position: absolute; font-size: 25px; cursor: pointer; outline: none;line-height: 30px;right: 10px;top: 7px; }
+.search-header{height: 98px;}
 .side { display: none }
 .rside { display: none }
 .blogbox { width: 100% }
+.welcome{margin-top: 48px}
 .contentbox, .viewbox, .pinlun, .picbox, .bloglist { margin: 10px }
 .newsbox { margin: 0; padding: 0 10px; }
 .bloginfo { margin-bottom: 10px; display: none }

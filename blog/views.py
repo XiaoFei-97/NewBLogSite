@@ -121,7 +121,8 @@ def get_blog_list_common_data(request, post_all_list):
 
     # 采用get方式获取用户访问的页码,如果获取不到,默认为第一页
     page_num = request.GET.get('page', 1)
-
+    if page_num == " " or page_num not in range(1, paginator.num_pages):
+        page_num = 1
     # 因为用户输入不一定是数字,所以需要用int(page_num),而django里的get_page会自动识别用户输入以及页码范围
     # 注意这里的page_of_list是一个paginator对象
     page_of_list = paginator.page(int(page_num))

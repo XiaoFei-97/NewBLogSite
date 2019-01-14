@@ -19,6 +19,11 @@ $(function () {
         $('#forgot_password_modal').modal('show');
     });
 
+    $("#search").click(function () {
+        $("header").toggleClass("search-header");
+        $(".search").toggle();
+    });
+
     setInterval(formatTime,1000);
 });
 
