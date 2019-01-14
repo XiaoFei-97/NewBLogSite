@@ -45,6 +45,7 @@ a:focus{outline:none;}
 	padding: 10px 0 0 0!important;
 	overflow-y: scroll;
 	overflow-x: hidden;
+    max-height: 30em;
 }
 .news .autoMenu ul li{
 	background: none;

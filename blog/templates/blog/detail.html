@@ -23,6 +23,7 @@
     <script type="text/javascript" charset="utf-8" src="{% static 'ueditor/ueditor.config.js' %}"></script>
     <script type="text/javascript" charset="utf-8" src="https://ueditor.baidu.com/ueditor/ueditor.all.min.js"> </script>
     <link rel="stylesheet" href="{% static 'detail/autoMenu.css' %}">
+    <link rel="stylesheet" href="{% static 'detail/clipboard.css' %}">
 {% endblock %}
 
 {% block nav_blog_active %}active{% endblock %}
@@ -216,6 +217,9 @@
 {% block script_extends %}
     <script type="text/javascript" src="{% static 'detail/detail.js' %}"></script>
     <script type="text/javascript" src="{% static 'detail/autoMenu.js' %}"></script>
+    <script type="text/javascript" src="{% static 'detail/clipboard.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'detail/clipboard-use.js' %}"></script>
+
     <script>
         $(function(){
             // 绑定图片点击放大

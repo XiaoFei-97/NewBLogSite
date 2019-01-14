@@ -6,7 +6,6 @@ $(window).load(function () {
     id_text.placeholder("让评论多一点真诚，少一点套路~");
 });
 
-
 String.prototype.format = function(){
     //因为javascript中没有占位或其他可以方法可以补充,所以需要自己创建一个函数将其实现类似于占位的方式
     var str = this;

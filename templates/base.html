@@ -21,6 +21,7 @@
     <link type="text/css" rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'base/myRewards.css' %}">
     {# 全局样式 #}
+    <link rel="stylesheet" type="text/css" href="{% static 'base/loader.css' %}">
     <link rel="stylesheet" href="{% static 'base/hover-min.css' %}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!--<script src="{% static 'base/jquery.min.js' %}" ></script>-->
@@ -30,8 +31,7 @@
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link href="{% static 'base/base.css' %}" rel="stylesheet">
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!--<link rel="stylesheet" href="https://www.deanhan.cn/wp-content/cache/autoptimize/css/autoptimize_f2c41dd53217853400986c9ee99dbb86.css">-->
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% block header_extend %}{% endblock %}
 </head>
 
@@ -125,6 +125,12 @@
             </form>
         </div>
     </header>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+        <div class="load_title">正在加载蒋振飞个人博客<br><span>V3.0</span></div>
+    </div>
     <aside class="side">
         <div class="about"> <i><a href="/" title="写博客、记笔记、做追梦少年"><img class="hvr-buzz" src="{% static 'img/avatar.jpg' %}"></a></i>
             <p>蒋振飞，2019届毕业生草根站长！关注互联网、Python全栈、JavaEE等技术。本站主要用来分享互联网、教程、学习笔记等，一个有情怀值得收藏的个人博客!</p>
@@ -154,8 +160,9 @@
                     <a href="http://www.miibeian.gov.cn/"><img src="https://www.yangruolan.com/Web_imgs/icp.png">赣ICP备18008471号</a>
                 </p>
                 <p>
-                    Copyright©2018 蒋振飞个人博客 · 保留所有权利 · Designed by 蒋振飞
+                    Copyright © 2018-2019 <font color="#f1607d">蒋</font><font color="#ffa500">振</font><font color="#e5e802">飞</font><font color="#3bff23">个</font><font color="#29c8ec">人</font><font color="#4f9cfa">博</font><font color="#459235">客</font> · 保留所有权利 · Designed by 蒋振飞
                 </p>
+                <p>博客稳定运行 <span id="run_time"></span></p>
             </div>
         </div>
     </main>
