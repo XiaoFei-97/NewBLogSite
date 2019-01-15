@@ -12,6 +12,10 @@
     text-indent: 0;
 }
 
+.entry h3{
+    margin-bottom: 10px;
+}
+
 .entry p a{
     text-decoration: underline;
 }

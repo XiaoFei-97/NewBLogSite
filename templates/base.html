@@ -53,10 +53,11 @@
                         <span class="glyphicon glyphicon-duplicate"></span> 系列文章<span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'blog:seriesblog' 3 %}">数据库</a></li>
-                        <li><a href="{% url 'blog:seriesblog' 8 %}">前端相关</a></li>
-                        <li><a href="{% url 'blog:seriesblog' 1 %}">网站搭建</a></li>
-                        <li><a href="{% url 'blog:seriesblog' 6 %}">网络爬虫</a></li>
+                        <li><a href="{% url 'blog:category' 3 %}">数据库</a></li>
+                        <li><a href="{% url 'blog:category' 8 %}">前端相关</a></li>
+                        <li><a href="{% url 'blog:category' 1 %}">网站搭建</a></li>
+                        <li><a href="{% url 'blog:category' 6 %}">网络爬虫</a></li>
+                        <li><a href="{% url 'blog:category' 14 %}">机器学习</a></li>
                     </ul>
                 </li>
                 <li class="dropdown hover">
@@ -64,10 +65,10 @@
                         <span class="glyphicon glyphicon-tree-deciduous"></span> 编程相关<span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'blog:programmerblog' 13 %}">Java</a></li>
-                        <li><a href="{% url 'blog:programmerblog' 10 %}">Linux</a></li>
-                        <li><a href="{% url 'blog:programmerblog' 2 %}">Python</a></li>
-                        <li><a href="{% url 'blog:programmerblog' 7 %}">Django</a></li>
+                        <li><a href="{% url 'blog:category' 13 %}">Java</a></li>
+                        <li><a href="{% url 'blog:category' 10 %}">Linux</a></li>
+                        <li><a href="{% url 'blog:category' 2 %}">Python</a></li>
+                        <li><a href="{% url 'blog:category' 7 %}">Django</a></li>
                     </ul>
                 </li>
                  <li class="dropdown hover">
@@ -78,6 +79,7 @@
                         <li><a href="{% url 'blog:blog' %}">全部文章</a></li>
                         <li><a href="{% url 'blog:category' 17 %}">工作笔记</a></li>
                         <li><a href="{% url 'blog:category' 16 %}">心情随笔</a></li>
+                        <li><a href="{% url 'blog:category' 4 %}">其他文章</a></li>
                     </ul>
                 </li>
                {# 关于 #}
@@ -342,7 +344,13 @@
         </div>
 
     <a href="#" class="cd-top cd-is-visible">Top</a>
-
+    <script>
+        // 等待所有加载
+        $(window).load(function(){
+            $('body').addClass('loaded');
+            $('#loader-wrapper .load_title').remove();
+        });
+    </script>
     <script src="{% static 'base/base.js' %}" ></script>
     {# 公告栏配置 #}
     <script>

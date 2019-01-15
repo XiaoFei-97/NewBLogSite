@@ -1,9 +1,3 @@
-// 等待所有加载
-$(window).load(function(){
-    $('body').addClass('loaded');
-    $('#loader-wrapper .load_title').remove();
-});
-
 //登录注册按钮
 $(function () {
     $("#login_button").click(function () {

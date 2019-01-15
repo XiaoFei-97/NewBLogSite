@@ -121,11 +121,14 @@ def get_blog_list_common_data(request, post_all_list):
 
     # 采用get方式获取用户访问的页码,如果获取不到,默认为第一页
     page_num = request.GET.get('page', 1)
-    if page_num == " " or page_num not in range(1, paginator.num_pages):
-        page_num = 1
+
     # 因为用户输入不一定是数字,所以需要用int(page_num),而django里的get_page会自动识别用户输入以及页码范围
     # 注意这里的page_of_list是一个paginator对象
-    page_of_list = paginator.page(int(page_num))
+
+    try:
+        page_of_list = paginator.page(int(page_num))
+    except Exception:
+        page_of_list = paginator.page(1)
 
     # 获取当前页码
     current_page_num = page_of_list.number
@@ -239,7 +242,6 @@ def blog(request):
     # 给request返回一个blog.html文件
     return render(request, 'blog/blog.html', context)
 
-
 @csrf_exempt
 def ajax_blog(request):
     """
@@ -329,86 +331,6 @@ def detail(request, pk):
     # 第一个参数是键,键值,和过期时间
     response.set_cookie(read_cookie_key, 'True', domain="jzfblog.com", secure=True, httponly=True)  # 阅读cookie标记
     return response
-
-
-def series(request):
-    """
-    显示某分类下的全部文章
-    :param request: 请求对象
-    :param pk: 分类的主键值
-    :return: 分类列表的视图
-    """
-    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
-    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True),
-                                    category__status=0).filter(Q(category_id=1) | Q(category_id=3) | Q(category_id=6) | Q(category_id=8))
-
-    # 使用公共部分的 get_blog_list_common_data方法
-    context = get_blog_list_common_data(request, post_list)
-
-    # 给request返回一个category.html文件
-    return render(request, 'blog/series.html', context)
-
-
-def seriesblog(request, pk):
-    """
-    显示某分类下的全部文章
-    :param request: 请求对象
-    :param pk: 分类的主键值
-    :return: 分类列表的视图
-    """
-    category = get_object_or_404(Category, pk=pk)
-
-    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
-    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category=category)
-
-    # 使用公共部分的 get_blog_list_common_data方法
-    context = get_blog_list_common_data(request, post_list)
-
-    # 新增了一个当前分类名称的键
-    context.update({'category_name': category.name, 'category': category})
-
-    # 给request返回一个category.html文件
-    return render(request, 'blog/series.html', context)
-
-
-def programmer(request):
-    """
-    显示某分类下的全部文章
-    :param request: 请求对象
-    :param pk: 分类的主键值
-    :return: 分类列表的视图
-    """
-    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
-    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True),
-                                    category__status=0).filter(Q(category_id=2) | Q(category_id=7) | Q(category_id=10) | Q(category_id=13))
-
-    # 使用公共部分的 get_blog_list_common_data方法
-    context = get_blog_list_common_data(request, post_list)
-
-    # 给request返回一个category.html文件
-    return render(request, 'blog/programmer.html', context)
-
-
-def programmerblog(request, pk):
-    """
-    显示某分类下的全部文章
-    :param request: 请求对象
-    :param pk: 分类的主键值
-    :return: 分类列表的视图
-    """
-    category = get_object_or_404(Category, pk=pk)
-
-    # 因为从url中获得了一个category的pk,就可以在post中进行过滤
-    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True), category=category)
-
-    # 使用公共部分的 get_blog_list_common_data方法
-    context = get_blog_list_common_data(request, post_list)
-
-    # 新增了一个当前分类名称的键
-    context.update({'category_name': category.name, 'category': category})
-
-    # 给request返回一个category.html文件
-    return render(request, 'blog/programmer.html', context)
 
 
 def category(request, pk):
