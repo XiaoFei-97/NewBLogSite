@@ -438,6 +438,7 @@ def looking(request):
 
     # 使用公共的get_blog_list_common_data的方法
     context = get_blog_list_common_data(request, list)
+    context.update({'key': wd, })
     # 给request返回一个blog.html文件
     return render(request, 'blog/search.html', context)
 

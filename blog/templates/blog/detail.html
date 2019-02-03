@@ -49,7 +49,7 @@
             </div>
             <div class="down">
                 <p><strong>郑重声明：</strong></p>
-                <p>(原创博文，转载请注明来自 <a href="https://jzfblog.com/">蒋振飞的博客</a>！本文链接：<a href="javascript:void(0);" id="share_addr" onclick=clickHandler()>点击我获取我的链接</a>)</p>
+                <p>(原创博文，转载请注明来自 <a class="light" href="https://jzfblog.com/">蒋振飞的博客</a>！本文链接：<a class="light" href="javascript:void(0);" id="share_addr" onclick=clickHandler()>点击我获取我的链接</a>)</p>
                 <p>若对你有帮助，不妨扫一扫右侧的二维码打赏我一下吧 ^_^</p>
             </div>
             <!--<div class="down">-->
@@ -64,16 +64,16 @@
                 <div class="pull-left">
                     <p>上一篇:
                         {% if previous_post %}
-                            <a class="hvr-underline-from-center" href="{% url 'blog:detail' previous_post.id %}">{{ previous_post.title }}</a>
+                            <u><a href="{% url 'blog:detail' previous_post.id %}">{{ previous_post.title }}</a></u>
                         {% else %}
-                            <a class="hvr-underline-from-center" href="{% url 'blog:blog' %}">返回列表</a>
+                            <u><a href="{% url 'blog:blog' %}">返回列表</a></u>
                         {% endif %}
                     </p>
                     <p>下一篇:
                         {% if next_post %}
-                            <a class="hvr-underline-from-center" href="{% url 'blog:detail' next_post.id %}">{{ next_post.title }}</a>
+                            <u><a href="{% url 'blog:detail' next_post.id %}">{{ next_post.title }}</a></u>
                         {% else %}
-                            <a class="hvr-underline-from-center" href="{% url 'blog:blog' %}">返回列表</a>
+                            <u><a href="{% url 'blog:blog' %}">返回列表</a></u>
                         {% endif %}
                     </p>
                 </div>

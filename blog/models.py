@@ -72,7 +72,7 @@ class Post(models.Model, ReadNumExpandMethod):
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     # auto_now_add=True时间可以被确定为现在的时间,不需要在后台对该字段名进行操作
     created_time = models.DateTimeField(verbose_name=u'创建时间', auto_now_add=True)
-    modified_time = models.DateTimeField(verbose_name=u'修改时间', auto_now_add=True)
+    modified_time = models.DateTimeField(verbose_name=u'修改时间', auto_now=True)
 
     # 文章摘要，可以没有文章摘要，但默认情况下 CharField 要求必须存入数据，否则就会报错。
     # 指定 CharField 的 blank=True 参数值后就可以允许空值了。
@@ -115,7 +115,7 @@ class Post(models.Model, ReadNumExpandMethod):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
-        ordering = ['-created_time']
+        ordering = ['-modified_time']
 
 
 def get_read_post(self):
