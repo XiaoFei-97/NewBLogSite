@@ -61,7 +61,7 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .newstitle span a { color: #fff; font-weight: 700 }
 .newstitle b { display: block; color: #fff; border-left: 1px solid #E1E1E1; padding-left: 10px }
 .newsbox .news ul { padding: 10px }
-.newsbox .news ul li { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 28px; width: 96%; line-height: 28px; font-size: 14px; background: url(../img/li.png) no-repeat left center; padding-left: 15px; }
+.newsbox .news ul li { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 28px; width: 96%; line-height: 28px; font-size: 14px; padding-left: 15px;}
 .newsbox .news ul li span { float: right; color: #999; font-size: 12px; margin-left: 20px }
 .newsbox .news ul li a:hover { color: #09B1B9; }
 /*link*/
@@ -112,7 +112,7 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 @keyframes fadeIn{ 0%{opacity:0} 100%{opacity:1}}
 .fadeIn{-webkit-animation: fadeIn 1.5s ease 0.5s 1 both;-webkit-animation-name:fadeIn;animation-name:fadeIn;display: block!important;}
 .rside .news ul { padding: 10px }
-.rside .news ul li { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 28px; width: 96%; line-height: 28px; font-size: 14px; background: url(../img/li.png) no-repeat left center; padding-left: 15px; }
+.rside .news ul li { display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 28px; width: 96%; line-height: 28px; font-size: 14px; padding-left: 15px; }
 .rside .news ul li span { float: right; color: #999; font-size: 12px; margin-left: 20px; }
 .rside .news ul li a:hover { color: #09B1B9; }
 .rside .linkmore {padding-top: 0!important;}

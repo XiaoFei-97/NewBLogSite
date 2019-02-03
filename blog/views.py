@@ -242,6 +242,22 @@ def blog(request):
     # 给request返回一个blog.html文件
     return render(request, 'blog/blog.html', context)
 
+
+def other(request):
+    """
+    博客列表的视图处理
+    :param request: 请求对象
+    :return: 博客列表视图
+    """
+    # post_all_list = Post.objects.all().filter(Q(display=0) | Q(display__isnull=True))
+    post_list = Post.objects.filter(Q(display=0) | Q(display__isnull=True)).filter(category__status=0, category__id=4)
+
+    # 使用公共的get_blog_list_common_data的方法
+    context = get_blog_list_common_data(request, post_list)
+
+    # 给request返回一个blog.html文件
+    return render(request, 'blog/other.html', context)
+
 @csrf_exempt
 def ajax_blog(request):
     """
