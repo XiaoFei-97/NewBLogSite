@@ -28,12 +28,12 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .about { line-height: 26px; font-size: 14px; padding: 0 10px; margin-top: 50px; }
 .about i { display: block; margin: 20px auto; width: 100px; height: 100px; }
 .about i img { width: 100%; display: block; border-radius: 50%; margin: auto }
-.about p { }
+.about p { font-weight: 700}
 .weixin { width: 100%; text-align: center; }
 .weixin img { width: 80%; margin: 40px auto 10px }
 .main-content { background: url(../img/skyblue.jpg) no-repeat;background-size: 100% 100%; margin-top: 48px; margin-left: 180px; }
 .welcome { border-bottom: 1px solid #E1E1E1; background: url(../img/zhuye.png) no-repeat left 20px center #fff; line-height: 42px; padding-left: 40px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-.picbox { border: 1px solid #E1E1E1; margin: 20px; background: #fff; overflow: visible; }
+.picbox { border: 1px solid #E1E1E1; margin: 20px 20px 0; background: #fff; overflow: visible; }
 .pictitle { background: #09b1b9; height: 40px; line-height: 40px; text-align: center; font-size: 16px; border-bottom: 1px solid #E1E1E1; }
 .pictitle a { color: #fff; }
 .pictitle a:hover { color: #fff; }
@@ -53,7 +53,7 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .Box_con .conbox ul li p { height: 30px; line-height: 30px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 .Box_con .conbox ul li:hover p { color: #09B1B9 }
 /*newsbox*/
-.newsbox { margin: 20px 10px }
+.newsbox { margin:10px 10px 20px}
 .newsbox section { width: 33.3%; float: left; margin-bottom: 20px }
 .newsbox .news { background: #fff; border: 1px solid #E1E1E1; margin: 0 10px }
 .newstitle { line-height: 40px; font-size: 15px; border-bottom: 1px solid #E1E1E1; background: #09b1b9 url(../img/newslist.png) no-repeat left 14px center; padding: 0 20px 0 46px; font-weight: normal }
@@ -82,7 +82,7 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .cd-top.cd-is-visible { visibility: visible; opacity: 1; }
 /*blogbox*/
 .blogbox { width: 70%; float: left;}
-.bloglist { margin: 20px; overflow: hidden; border: 1px solid #E1E1E1; background: #fff }
+.bloglist { margin: 20px 20px 10px; overflow: hidden; border: 1px solid #E1E1E1; background: #fff }
 .bloglist li { overflow: hidden; position: relative }
 .bloglist h2 { border-top: 1px solid #eee; border-bottom: 1px solid #eee; background: #FDFDFD; font-weight: 400; font-size: 18px; line-height: 40px; padding-left: 20px; }
 .bloglist li:before { content: ""; position: absolute; bottom: 0; left: 0; height: 100%; width: 3px; background: #09b1b9 }
@@ -177,7 +177,7 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .top-nav ul li { padding-right: 23px; }
 .newsbox .news ul li span { display: none }
 .newsbox .news { margin: 0 5px 0 0 }
-.picbox { margin: 10px }
+.picbox { margin: 10px 10px 0 }
 .blogtext { -webkit-line-clamp: 2; }
 .bloglist li { margin-bottom: 10px }
 .rside .news ul li span { display: none }
@@ -196,8 +196,8 @@ header { position: fixed; top: 0; left: 0; z-index: 1000; margin: 0; width: 100%
 .search { display: none }
 .rside { display: none }
 .blogbox { width: 100% }
-.contentbox, .viewbox, .pinlun, .picbox { margin: 10px }
-.newsbox { margin: 0; padding: 0 10px; }
+.contentbox, .viewbox, .pinlun, .picbox { margin: 10px 10px 0 }
+.newsbox { margin: 0; padding: 10px 10px; }
 .bloginfo { margin-bottom: 20px }
 .newsbox section { width: 50% }
 .links { margin: 0 10px 10px 10px }
@@ -218,8 +218,8 @@ header { border-bottom: none; }
 .rside { display: none }
 .blogbox { width: 100% }
 .welcome{margin-top: 48px}
-.contentbox, .viewbox, .pinlun, .picbox, .bloglist { margin: 10px }
-.newsbox { margin: 0; padding: 0 10px; }
+.contentbox, .viewbox, .pinlun, .picbox, .bloglist { margin: 10px 10px 0 }
+.newsbox { margin: 0; padding: 10px 10px; }
 .bloginfo { margin-bottom: 10px; display: none }
 .bloglist li .viewmore{position: static;margin: 10px;text-align: center;display: none}
 .bloglist li i{width: 30%; }

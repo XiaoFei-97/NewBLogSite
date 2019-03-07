@@ -75,7 +75,7 @@ def home(request):
     # context用来渲染模板
     context = {
         'category_list': category_list, 'post_count': post_list.count,
-        'new_publish': new_publish, 'new_recommend': new_recommend,
+        'new_publish': new_publish, 'new_recommend': new_recommend, 'new_publish_display': new_publish[0:5],
         'random_recommend': random_recommend,
         # 'seven_dates': seven_dates,'seven_read_nums': seven_read_nums, 'thirty_dates': thirty_dates,
         # 'thirty_read_nums': thirty_read_nums, 'year': str(year),

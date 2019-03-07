@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load post_tags %}
+{% load comment_tags %}
 
 {% block title %}
     蒋振飞个人博客 - 分享全栈开发和IT技术的个人博客网站
 {% endblock %}
 
 {% block header_extend %}
-
+    <link rel="stylesheet" href="{% static 'about/about.css' %}">
 {% endblock %}
 
 {% block nav_home_active %}active{% endblock %}
@@ -19,7 +20,6 @@
 {% endblock nav_route %}
 
 {% block content %}
-
     <div class="picbox">
         <h2 class="pictitle"><a href="/"><u>头条展示</u></a></h2>
         <!--box begin-->
@@ -59,6 +59,128 @@
             </div>
         </div>
         <!--box end-->
+    </div>
+    <div class="clearfix">
+        <div class="blogbox">
+        <div class="bloglist">
+            <ul id="bloglist">
+                {% for post in new_publish_display %}
+                    <li>
+                        <h2><a class="hvr-rotate" href="{% url 'blog:detail' post.id %}" target="_Blank">{{ post.title }}</a></h2>
+                        <i><a href="{% url 'blog:detail' post.id %}">
+
+                             {% if post.pimage %}
+                                <img class="hvr-grow-shadow" src="/media/{{ post.pimage }}" title="{{post.title}}">
+                             {% else %}
+                                <img class="hvr-grow-shadow" src="/media/upload/images/2018/12/14e1dfa5574ba3a81a22ad7d11252405.jpg" title="{{post.title}}">
+                             {% endif %}
+
+                        </a></i>
+                        <p class="blogtext"><a href="{% url 'blog:detail' post.id %}">{{ post.body|cut:'&nbsp;'|striptags|truncatechars:150|safe}}</a></p>
+                        <p class="bloginfo">
+                            <!--<span>{{ post.author.get_nickname_or_username }}</span>-->
+                            <span>{{ post.created_time|date:"Y年m月d日" }}</span>
+                            <span><a class="hvr-wobble-vertical" href="{% url 'blog:category' post.category.id %}">{{ post.category }}</a></span>
+                            <span>浏览({{ post.get_read_num }}）</span>
+                            <span style="padding-left: 0px"><samp class="fa fa-comment"></samp> 评论({% get_comment_count post %})</span>
+                        </p>
+                        <a href="{% url 'blog:detail' post.id %}" target="_blank" class="viewmore hvr-sweep-to-top hidden">阅读原文</a>
+                    </li>
+                    {% if not forloop.last %}
+                        <div class="blank"></div>
+                    {% else %}
+
+                    {% endif %}
+                {% empty %}
+                    <li class="no-find">暂无博客,敬请期待 !</li>
+                {% endfor %}
+            </ul>
+            <div class="loaddiv hidden">
+                <img src="{% static '/img/loading.gif' %}" />
+            </div>
+        </div>
+    </div>
+        {% block side_list %}
+            <div class="rside">
+        <div class="news">
+             <h2 class="newstitle"><b>蒋振飞的名片</b></h2>
+             <ul style="padding-bottom: 0">
+                 <li>社交：代码打碟手.</li>
+                 <li>现居：江西 · 景德镇</li>
+                 <li>职业：2019年应届毕业生</li>
+                <li>爱好：阅读、程序、思考、运动、社交</li>
+                <li>Email：XiaoFei-97@outlook.com</li>
+             </ul>
+             <ul class="linkmore clearfix">
+                 <li class="QQ">
+                    <a target="_blank" title="QQ联系我" href="http://wpa.qq.com/msgrd?v=3&uin=1378482556&site=qq&menu=yes">
+                        <img src="{% static 'img/logo_qq.ico' %}" alt="QQ联系我">
+                    </a>
+                </li>
+                 <li class="email">
+                     <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=XiaoFei-97@outlook.com" target="_blank" title="我的邮箱">
+                         <img src="{% static 'img/logo_email.ico' %}" alt="Email">
+                     </a>
+                 </li>
+                 <li class="open_china">
+                     <a href="https://my.oschina.net/zhenfei" target="_Blank" title="开源中国">
+                         <img src="{% static 'img/logo_open_china.ico' %}" alt="开源中国">
+                     </a>
+                 </li>
+                 <li class="github">
+                     <a href="https://github.com/XiaoFei-97" target="_Blank" title="我的Github">
+                         <img src="{% static 'img/logo_github.ico' %}" alt="我的Github">
+                     </a>
+                 </li>
+                 <li class="wechat_person">
+                      <a href="javascript:void(0);" target="_Blank" title="公众号">
+                         <img src="{% static 'img/weixin.png' %}" alt="公众号">
+                      </a>
+                      <img id="card_wechat" class="card_wechat" src="{% static 'img/wechat.jpg' %}" alt="公众号">
+                  </li>
+                 {# <li><a href="mailto:XiaoFei-97@outlook.com" title="我的邮箱"><img src="{% static 'blog/img/email.ico' %}" alt="Email"></a></li>#}
+            </ul>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>技能栏</b></h2>
+            <div class="box">
+                <div>C</div>
+                <div>Linux</div>
+                <div>Shell</div>
+                <div>Python</div>
+                <div>Java</div>
+                <div>Django</div>
+                <div>MySQL</div>
+                <div>MongoDB</div>
+                <div>Redis</div>
+                <div>HTML</div>
+                <div>CSS</div>
+                <div>JavaScript</div>
+                <div>JQuery</div>
+                <div>BootStrap</div>
+                <div>Scrapy</div>
+                <div>Servlet</div>
+                <div>Jsp</div>
+                <div>Hibernate</div>
+            </div>
+        </div>
+        <div class="news">
+            <h2 class="newstitle"><b>在线工具</b></h2>
+            <ul>
+                 <li><u><a href="https://www.yiibai.com/" target="_blank">易百教程</a></u></li>
+                <li><u><a href="https://tool.lu/c/developer" target="_blank">开发在线工具</a></u></li>
+                 <li><u><a href="https://www.highcharts.com.cn/docs/basic-color" target="_blank">Highcharts教程</a></u></li>
+                <li><u><a href="http://www.jq22.com/" target="_blank">JQuery插件库</a></u></li>
+                <li><u><a href="http://fontawesome.dashgame.com/" target="_blank">Font Awesome</a></u></li>
+                <li><u><a href="https://www.djangoproject.com/" target="_blank">Django API文档</a></u></li>
+                <li><u><a href="https://www.iconfont.cn/" target="_blank">阿里巴巴矢量图标</a></u></li>
+                <li><u><a href="http://www.bitbug.net/" target="_blank">在线制作icon工具</a></u></li>
+                <li><u><a href="https://tongji.baidu.com" target="_blank">站长工具-百度统计</a></u></li>
+                <li><u><a href="http://www.w3school.com.cn/" target="_blank">W3 School在线教程</a></u></li>
+            </ul>
+        </div>
+    </div>
+        {% endblock side_list %}
     </div>
     <div class="newsbox">
         <section>
@@ -163,7 +285,7 @@
         </ul>
     </div>
 
-<script>
+    <script>
     $(function () {
         setInterval(function () {
 

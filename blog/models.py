@@ -115,7 +115,7 @@ class Post(models.Model, ReadNumExpandMethod):
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = '文章'
-        ordering = ['-modified_time']
+        ordering = ['-created_time']
 
 
 def get_read_post(self):
